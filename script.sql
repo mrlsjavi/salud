@@ -111,7 +111,7 @@ CREATE TABLE pagina
 
 -- Table permisos_rol
 
-CREATE TABLE permisos_rol
+CREATE TABLE permiso_rol
 (
   id Int NOT NULL AUTO_INCREMENT,
   rol Int,
