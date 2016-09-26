@@ -17,16 +17,21 @@ class Dispositivo_Model {
 			'ip'=>$info->ip,
 			'estado'=>1);
 
-		$dispositivo = new dispositivo_orm($data);
+		$general = new general_orm();
+		$result = $general::query("INSERT INTO dispositivo (usuario, ip, estado) values (".$data["usuario"].", '".$data["ip"]."'	,1);");
+		//$result = $dispositivo->save();
 
-		$result = $dispositivo->save();
-
-	 	echo json_encode($result);
+		if($result){
+				//array("cod"=>1, "msj"=> "Operacion realizada con exito");
+				echo json_encode(array("cod"=>1, "msj"=> "Operacion realizada con exito"));
+		}
 	}
 
 
 	public function llenar_tabla(){
-		$dispositivos = dispositivo_orm::where('estado', 1);
+		//$dispositivos = dispositivo_orm::where('estado', 1);
+		$general = new general_orm();
+		$dispositivos = $general::query("SELECT * FROM dispositivo WHERE estado = 1;");
 
 		$tabla = '<table id="javier" class="display" cellspacing="0" width="100%">
         <thead>
@@ -55,11 +60,12 @@ class Dispositivo_Model {
         //validar si hay respuest
 		if($dispositivos!=null && count($dispositivos) > 0){
 			foreach ($dispositivos as $d) {
-				$tabla  = $tabla."<tr>
-										<td>".$d->obj_usuario->nombre."</td>
-										<td>".$d->ip."</td>
-										<td class = 'editar'   id='".$d->id."'>Editar</td>
-										<td class = 'eliminar' id='".$d->id."'>Eliminar</td>";
+				$usuario = usuario_orm::find($d['usuario']);
+				$tabla  = $tabla."<tr style=\"text-align: center;\">
+										<td>".$usuario->nombre."</td>
+										<td>".$d['ip']."</td>
+										<td class = 'editar'   id='".$d['id']."'>Editar</td>
+										<td class = 'eliminar' id='".$d['id']."'>Eliminar</td>";
 			}
 		}
 
@@ -79,10 +85,10 @@ class Dispositivo_Model {
 
 	public function traer_dato(){
 		$info = json_decode($_POST['info']);
+		$general = new general_orm();
+		$dispositivo = $general::query("SELECT * FROM dispositivo WHERE id = ".$info->id.";");
 
-		$dispositivo = dispositivo_orm::where("id", $info->id);
-
-		$result = array('cod' => 1, 'datos' => $dispositivo);
+		$result = array('cod' => 1, 'datos' => $dispositivo[0]);
 
 	 	echo json_encode($result);
 	}
@@ -105,11 +111,14 @@ class Dispositivo_Model {
 			'estado'=>1);
 
 
-		$dispositivo = new dispositivo_orm($data);
-
-		$result = $dispositivo->save();
-
-	 	echo json_encode($result);
+		//$dispositivo = new dispositivo_orm($data);
+		$general = new general_orm();
+		$result = $general::query("UPDATE dispositivo SET usuario = ".$data['usuario'].", ip = '".$data['ip']."' WHERE id=".$data['id']);
+		//$result = $dispositivo->save();
+		if($result){
+				//array("cod"=>1, "msj"=> "Operacion realizada con exito");
+				echo json_encode(array("cod"=>1, "msj"=> "Operacion realizada con exito"));
+		}
 	}
 
 }
