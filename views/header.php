@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title><?=(isset($this->title)) ? $this->title : 'Hotel'  ?> </title>
+	<title><?=(isset($this->title)) ? $this->title : 'Salud'  ?> </title>
 	<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/default.css"/>
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.1/themes/sunny/jquery-ui.css"/>
 
@@ -41,21 +41,15 @@
 		<?php if(Session::get('loggedIn') == true):?>
 		<label>Bienvenido: <?php echo Session::get('nombre'); ?></label>
 		<a href="<?php echo URL;?>index" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">Inicio</a>
-		<a href="<?php echo URL;?>pronostico" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">Pronostico</a>
-		<a href="<?php echo URL;?>posicion" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">Posiciones</a>
 		
-			<!--aqui v lo de los roles-->
-			<?php if(Session::get('rol') == 'admin'):?>
-				
-				<a href="<?php echo URL;?>usuario" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">Usuario</a>
-				<a href="<?php echo URL;?>equipo" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">Equipos</a>
-				<a href="<?php echo URL;?>resultado" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">Resultados</a>
-			<?php endif;?>
+		<?php Auth::menu();?>
 		
 		
 		<a href="<?php echo URL;?>dashboard/logout" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">Logout</a>
 		<?php else:?>
 		<a href="<?php echo URL; ?>login" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">login</a>
+		<a href="<?php echo URL; ?>registro" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">Registro</a>
+		
 		<?php endif; ?>
 	</div>
 

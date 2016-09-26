@@ -1,4 +1,4 @@
 
 
-Bienvenidos a la pagina principal de AutoHotel!
+Bienvenidos a la pagina principal de Monitor de Salud!
 
