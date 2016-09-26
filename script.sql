@@ -1,6 +1,6 @@
 /*
 Created: 03/09/2016
-Modified: 19/09/2016
+Modified: 24/09/2016
 Model: MySQL 5.5
 Database: MySQL 5.5
 */
@@ -109,7 +109,7 @@ CREATE TABLE pagina
 )
 ;
 
--- Table permisos_rol
+-- Table permiso_rol
 
 CREATE TABLE permiso_rol
 (
@@ -121,10 +121,10 @@ CREATE TABLE permiso_rol
 )
 ;
 
-CREATE INDEX IX_Relationship10 ON permisos_rol (rol)
+CREATE INDEX IX_Relationship10 ON permiso_rol (rol)
 ;
 
-CREATE INDEX IX_Relationship11 ON permisos_rol (pagina)
+CREATE INDEX IX_Relationship11 ON permiso_rol (pagina)
 ;
 
 -- Table dispositivo
@@ -191,10 +191,10 @@ ALTER TABLE dispositivo ADD CONSTRAINT Relationship3 FOREIGN KEY (usuario) REFER
 ALTER TABLE usuario ADD CONSTRAINT Relationship5 FOREIGN KEY (rol) REFERENCES rol (id) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 
-ALTER TABLE permisos_rol ADD CONSTRAINT Relationship10 FOREIGN KEY (rol) REFERENCES rol (id) ON DELETE RESTRICT ON UPDATE RESTRICT
+ALTER TABLE permiso_rol ADD CONSTRAINT Relationship10 FOREIGN KEY (rol) REFERENCES rol (id) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 
-ALTER TABLE permisos_rol ADD CONSTRAINT Relationship11 FOREIGN KEY (pagina) REFERENCES pagina (id) ON DELETE RESTRICT ON UPDATE RESTRICT
+ALTER TABLE permiso_rol ADD CONSTRAINT Relationship11 FOREIGN KEY (pagina) REFERENCES pagina (id) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
 
 ALTER TABLE medida_sensor ADD CONSTRAINT Relationship12 FOREIGN KEY (sensor) REFERENCES sensor (id) ON DELETE RESTRICT ON UPDATE RESTRICT

@@ -1,6 +1,6 @@
 <?php
 	class usuario_orm extends ORM {
-		public $id, $rol, $obj_rol, $nombre, $login, $password, $estado;
+		public $id, $rol, $obj_rol, $nombre, $login, $password, $direccion, $telefono, $estado;
 		protected static $table = 'usuario';
 
 		public function __construct($data){
@@ -25,6 +25,8 @@
 			$this->nombre = isset($data['nombre']) ? $data['nombre'] : null;
 			$this->login = isset($data['login']) ? $data['login'] : null;
 			$this->password = isset($data['password']) ? $data['password'] : null;
+			$this->direccion = isset($data['direccion']) ? $data['direccion'] : null;
+			$this->telefono = isset($data['telefono']) ? $data['telefono'] : null;
 			$this->estado = isset($data['estado']) ? intval($data['estado']) : null;
 		
 

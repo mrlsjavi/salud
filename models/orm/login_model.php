@@ -1,4 +1,5 @@
 <?php
+  
 
 	class Login_Model {
 
@@ -50,5 +51,9 @@
 
 			
 		}
+
+    public function clave(){
+       
+  }
 
 	}
