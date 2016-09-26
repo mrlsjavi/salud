@@ -1,7 +1,7 @@
 <?php
 	class dispositivo_orm extends ORM {
 		public $id, $usuario, $obj_usuario, $ip, $estado;
-		protected static $table = 'dispostivo';
+		protected static $table = 'dispositivo';
 
 		public function __construct($data){
 			parent::__construct(); //llamo el orm

@@ -17,7 +17,6 @@ class Dispositivo_Model {
 			'ip'=>$info->ip,
 			'estado'=>1);
 
-
 		$dispositivo = new dispositivo_orm($data);
 
 		$result = $dispositivo->save();
@@ -89,7 +88,8 @@ class Dispositivo_Model {
 	}
 
 	public function traer_usuarios(){
-		$usuarios = usuario_orm::where("estado", 1);
+		$usuarios = usuario_orm::where('estado', 1);
+
 		$result = array('cod' => 1, 'datos' => $usuarios);
 
 		echo json_encode($result);

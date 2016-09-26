@@ -15,7 +15,7 @@
 		<select id="txt_usuario"></select>
 		<br />
 		<label>IP</label>
-		<input type="text" id="txt_ip"/>
+		<input type="text" id="txt_ip" maxlength="20" />
 		<br/>
 		<br/>
 		<button id="btn_guardar">Guardar</button>
@@ -37,7 +37,7 @@
 		<input type="hidden" id="txt_EditarId"/>
 		<br />
 		<label>IP</label>
-		<input type="text" id="txt_EditarIp"/>
+		<input type="text" id="txt_EditarIp" maxlength="20"/>
 		<br/>
 		<br/>
 		<button id="btn_actualizar">Actualizar</button>
