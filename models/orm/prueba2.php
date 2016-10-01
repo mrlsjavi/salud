@@ -4,6 +4,10 @@ require_once('ORM.php');
     require_once('general_orm.php');
     require_once('rol_orm.php');
     require_once('usuario_orm.php');
+    require_once('alerta_orm.php');
+    require_once('medida_sensor_orm.php');
+    require_once('sensor_orm.php');
+    require_once('unidad_medida_orm.php');
     
 
     Database::getConnection(DB_PROVIDER, DB_HOST, DB_USER, DB_PASSWORD, DB_DB);
@@ -41,6 +45,23 @@ and p.id in (1, 2, 3, 4, 5)");
  foreach ($roles as $r) {
         echo $r->obj_rol->nombre;
         echo "<br/>";
+        }
+
+
+
+        echo "<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>";
+
+
+        $alerta=alerta_orm::where('estado', 1);
+        print_r($alerta);
+        echo "<br/><br/>";
+         foreach ($alerta as $a) {
+            echo $a->nombre;
+            echo $a->umbral_min;
+            echo $a->umbral_max;
+            echo $a->obj_medida_sensor->obj_sensor->titulo;
+            echo $a->obj_medida_sensor->obj_unidad_medida->titulo;
+            echo "<br/>";
         }
 
 

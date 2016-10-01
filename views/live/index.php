@@ -136,10 +136,14 @@ function openCity(evt, cityName) {
   
     	</select>
     </div>
-  
-    <br/>
   	<br/>
- 	<div id="dv_datos">
+  	<br/>
+<div id="dv_graficas">
+	
+
+
+</div>
+
  	
 
 </div>

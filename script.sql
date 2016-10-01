@@ -33,6 +33,7 @@ CREATE TABLE alerta
 (
   id Int NOT NULL AUTO_INCREMENT,
   medida_sensor Int,
+  nombre Varchar(100),
   umbral_min Double,
   umbral_max Double,
   estado Int,

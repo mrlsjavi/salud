@@ -46,6 +46,10 @@ class Alerta extends Controller{
 	function actualizar(){
 		$this->model->actualizar();
 	}
+
+	function sensores(){
+		$this->model->sensores();
+	}
     
 
 

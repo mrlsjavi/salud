@@ -16,6 +16,7 @@
 		<br/>
 		<br/>
 		<button id="btn_guardar">Guardar</button>
+		<button id="btn_prueba">prueba</button>
 	</div>
 	
 	

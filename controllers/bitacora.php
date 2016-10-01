@@ -1,6 +1,6 @@
 <?php
 
-class Live extends Controller{
+class Bitacora extends Controller{
 
 	function __construct(){
 		parent::__construct(); //llamar el construct del padre que es controller(libs/controller)
@@ -10,20 +10,20 @@ class Live extends Controller{
 
 		
 		//ya tenogo incluido el jquery y aqui mando a llamar su javascript independiente de cada vista 
-		$this->view->js = array('live/js/default.js', 'live/js/circle-progress.js', 'live/js/gradient-progress-bar.js', 'live/js/Chart.js');
+		//$this->view->js = array('rol/js/default.js');
 
 		
 	}
 
-	function index(){
-		$this->view->title = 'Live';
+/*	function index(){
+		$this->view->title = 'Rol';
 		$this->view->render('header');
 		//echo Hash::create('md5', 'test', HASH_PASSWORD_KEY);
 		//echo Hash::create('sha256', 'test', HASH_PASSWORD_KEY);
 		//vista carpeta/archivo
-		$this->view->render('live/index');
+		$this->view->render('rol/index');
 		$this->view->render('footer');
-	}
+	}*/
 
 	
 
@@ -31,19 +31,7 @@ class Live extends Controller{
 		$this->model->guardar();
 	}
 
-	function vivo(){
-		$this->model->vivo();
-	}
-
-	function select(){
-		$this->model->select();
-	}
-
-	function historial(){
-		$this->model->historial();
-	}
-
-    //http://js-tutorial.com/jquery-circle-progress-draw-animated-circular-progress-bars-1114
+    
 
 
 	

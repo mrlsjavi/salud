@@ -28,6 +28,8 @@ require_once("models/orm/permiso_orm.php");
 require_once("models/orm/unidad_medida_orm.php");
 require_once("models/orm/medida_sensor_orm.php");
 require_once("models/orm/sensor_orm.php");
+require_once("models/orm/alerta_orm.php");
+require_once("models/orm/bitacora_orm.php");
 //require_once("models/orm/accion_model.php"); //llego al model pero no al orm -_-
 //require_once("")
 

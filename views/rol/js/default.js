@@ -200,6 +200,36 @@ $(document).ready(function(){
    	});
    }
 
+   $("#btn_prueba").click(function(){
+
+		var datos = [];
+
+		//datos.push({'usuario':'19940803', 'hora':'2016-03-25 06:42:45', 'entrada':'1'});
+		//datos.push({'usuario':'19940803', 'hora':'2016-03-25 15:42:45', 'entrada':'0'});
+
+		datos.push({'nombre':'2', 'medida_sensor':'2', 'dato':'87', 'fecha':'2016-03-25 15:42:45'});
+		datos.push({'nombre':'2', 'medida_sensor':'2', 'dato':'94', 'fecha':'2016-09-25 15:42:45'});
+
+
+
+		var datos_json = JSON.stringify(datos)
+		
+		
+		enviar = {info: datos_json};
+		console.log(enviar);
+		//alert("va");
+				$.ajax({
+				type: "POST",
+				data: enviar,
+				url:"bitacora/guardar",
+				dataType:"json",
+				success: function(res){
+					alert(res.msj);
+				}
+
+			});
+   });
+
 
 
 

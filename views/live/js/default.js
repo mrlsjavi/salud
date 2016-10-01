@@ -2,6 +2,7 @@ $(document).ready(function(){
 	window.onload = function(){
 			tiempo_real();
 			llenar_select();
+			historial();
 	};
 
 
@@ -18,6 +19,26 @@ $(document).ready(function(){
 			
 				$("#Vivo").empty();
 				$("#Vivo").append(res);
+
+
+				
+			}
+
+		});
+	}
+
+	function historial(){
+		$.ajax({
+			type: "POST",
+			//data: enviar,
+			url:"live/historial",
+			//dataType:"json",
+			success: function(res){
+				
+				
+			
+				$("#dv_graficas").empty();
+				$("#dv_graficas").append(res);
 
 
 				
@@ -44,14 +65,14 @@ $(document).ready(function(){
 
 	$("#slt_sensor").change(function(){
 		if($("#slt_sensor").val() == 0){
-			//alert("oculto");
+			alert("oculto");
 			//ocultar div 
-			ocultarVentana();
+			//ocultarVentana();
 		}
 		else{
-			//alert("cargo");
-			cargar_paginas();
-			mostrarVentana();
+			alert("cargo");
+			//cargar_paginas();
+			//mostrarVentana();
 		}
 	});
 

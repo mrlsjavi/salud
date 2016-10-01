@@ -89,7 +89,7 @@ $graficos = '<h2>Vivo</h2>
 	<script type="text/javascript">
 		$(".progress-bar").gradientProgressBar({
 
-				  value: .50, // percentage
+				  value: 1.0, // percentage
 
 				  size: 300, // width
 
@@ -120,6 +120,50 @@ $graficos = '<h2>Vivo</h2>
 		}
 
 		echo $select;
+	}
+
+
+	public function historial(){
+		$graficos = '<div id="canvas-holder">
+ 		<canvas id="chart-area4" width="600" height="300"></canvas>
+ 		
+	</div>
+
+	<script type="text/javascript">
+ 			var lineChartData = {
+			labels : ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio"],
+			datasets : [
+				{
+					label: "Primera serie de datos",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "#6b9dfa",
+					pointColor : "#1e45d7",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [90,30,10,80,15,5,15]
+				},
+				{
+					label: "Segunda serie de datos",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "#e9e225",
+					pointColor : "#faab12",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [40,50,70,40,85,55,15]
+				}
+			]
+
+		}
+
+		var ctx4 = document.getElementById("chart-area4").getContext("2d");
+		//window.myPie = new Chart(ctx4).Line(lineChartData, {responsive:true});
+		window.myPie = new Chart(ctx4).Line(lineChartData, {responsive:false});
+
+ 		</script>';
+
+ 		echo $graficos;
 	}
 
 

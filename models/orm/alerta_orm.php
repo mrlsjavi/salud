@@ -1,6 +1,6 @@
 <?php
 	class alerta_orm extends ORM {
-		public $id, $medida_sensor, $obj_medida_sensor, $umbral_min, $umbral_max, $estado;
+		public $id, $nombre, $medida_sensor, $obj_medida_sensor, $umbral_min, $umbral_max, $estado;
 		protected static $table = 'alerta';
 
 		public function __construct($data){
@@ -14,6 +14,8 @@
 		public function populateFromRow($data){
 
 			$this->id = isset($data['id']) ? intval($data['id']) : null;
+
+			$this->nombre = isset($data['nombre']) ? $data['nombre'] : null;
 
 			$this->medida_sensor = isset($data['medida_sensor']) ? $data['medida_sensor'] : null;
 
