@@ -125,6 +125,49 @@ $graficos = '<h2>Vivo</h2>
 
 	public function historial(){
 		$graficos = '<div id="canvas-holder">
+ 		<canvas id="chart-area4" width="800" height="300"></canvas>
+ 		
+	</div>
+
+	<script type="text/javascript">
+ 			var lineChartData = {
+			labels : ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+			datasets : [
+				{
+					label: "Primera serie de datos",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "#6b9dfa",
+					pointColor : "#1e45d7",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [0,0,0,0,0,0,0,0,82,0,0,0]
+				},
+				{
+					label: "Segunda serie de datos",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "#e9e225",
+					pointColor : "#faab12",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [0,0,0,0,0,0,0,0,57,0,0,0]
+				}
+			]
+
+		}
+
+		var ctx4 = document.getElementById("chart-area4").getContext("2d");
+		//window.myPie = new Chart(ctx4).Line(lineChartData, {responsive:true});
+		window.myPie = new Chart(ctx4).Line(lineChartData, {responsive:false});
+
+ 		</script>';
+
+ 		echo $graficos;
+	}
+
+	/*
+		$graficos = '<div id="canvas-holder">
  		<canvas id="chart-area4" width="600" height="300"></canvas>
  		
 	</div>
@@ -162,8 +205,51 @@ $graficos = '<h2>Vivo</h2>
 		window.myPie = new Chart(ctx4).Line(lineChartData, {responsive:false});
 
  		</script>';
+	*/
 
- 		echo $graficos;
+
+	public function llenar_tabla(){
+		$general = new general_orm();
+
+
+		$tabla = "<table>
+					<thead>
+						<tr>
+							<th>Dia</th>
+							<th>Unidad Lectura</th>
+							<th>Promedio lectura</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody>";
+
+		for($i=1; $i<32; $i++){
+			$datos = $general::query("select avg(b.dato) as dato, um.titulo, DAY(b.fecha_hora) as dia
+										from bitacora as b 
+										join medida_sensor as ms on b.medida_sensor = ms.id and ms.sensor = 1
+										join sensor as s on ms.sensor = s.id
+										join unidad_medida as um on ms.unidad_medida = um.id 
+										where b.usuario =  2 and YEAR(b.fecha_hora) = '2016' and MONTH(b.fecha_hora) ='09' and DAY(b.fecha_hora) = '".$i."' 
+										Group by um.titulo");
+
+			if($datos){
+				foreach($datos as $d){
+					$tabla = $tabla."<tr>
+										<td>".$d['dia']."</td>
+										<td>".$d['titulo']."</td>
+										<td>".$d['dato']."</td>
+									</tr>";
+				}
+			}
+		}
+
+		
+
+		$tabla = $tabla."</tbody>
+						</table>";
+
+		echo $tabla;
 	}
 
 

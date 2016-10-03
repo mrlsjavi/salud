@@ -34,6 +34,7 @@
                 Session::set('nombre', $u->nombre);
                 Session::set('id_rol', $u->obj_rol->id);
                 Session::set('rol', $u->obj_rol->nombre);
+                Session::set('correo', $u->login);
                 Session::set('loggedIn', true);
                // header('location: ../index');
                 header('location: '.URL.'index');

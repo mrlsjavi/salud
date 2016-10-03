@@ -9,6 +9,7 @@ class Alerta_Model {
 	}
 
 	public function guardar(){
+		@session_start();
 		$info = json_decode($_POST['info']);
 
 		$data = array(
@@ -23,6 +24,17 @@ class Alerta_Model {
 		$alerta = new alerta_orm($data);
 
 		$result = $alerta->save();
+
+		$datos = array(
+			'id'=>'',
+			'usuario'=>Session::get('id'),
+			'alerta'=>$result['ingreso'],
+			'mail'=>Session::get('correo'),
+			'notificacion'=>1,
+			'estado'=> 1);
+
+		$asginacion = new usuario_alerta_orm($datos);
+		$result = $asginacion->save();
 
 	 	echo json_encode($result);
 	}

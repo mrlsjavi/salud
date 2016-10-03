@@ -43,6 +43,10 @@ class Live extends Controller{
 		$this->model->historial();
 	}
 
+	function llenar_tabla(){
+		$this->model->llenar_tabla();
+	}
+
     //http://js-tutorial.com/jquery-circle-progress-draw-animated-circular-progress-bars-1114
 
 

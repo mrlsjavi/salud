@@ -12,10 +12,12 @@ class Perfil_Model {
 		@session_start();
 		$info = json_decode($_POST['info']);
 		$pass = '';
+		$identificador = '';
 		$usuario = usuario_orm::where('id', Session::get('id'));
 		foreach ($usuario as $u) {
        
         	$pass = $u->password;
+        	$identificador = $u->identificador;
         }
 
 		$data = array(
@@ -26,6 +28,7 @@ class Perfil_Model {
 			'password'=>$pass,
 			'direccion'=>$info->direccion,
 			'telefono'=>$info->telefono,
+			'identificador'=>$identificador,
 			'estado'=>1);
 
 
