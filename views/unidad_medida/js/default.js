@@ -5,7 +5,7 @@ $(document).ready(function(){
 	};
 
 	$("#btn_guardar").click(function(){
-		var datos = {usuario: $("#txt_usuario").val(), ip: $("#txt_ip").val()};
+		var datos = {titulo: $("#txt_titulo").val()};
 		var datos_json = JSON.stringify(datos);
 
 		enviar = {info: datos_json};
@@ -13,7 +13,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: "POST",
 			data: enviar,
-			url:"dispositivo/guardar",
+			url:"unidad_medida/guardar",
 			dataType:"json",
 			success: function(res){
 				alert(res.msj);
@@ -24,8 +24,7 @@ $(document).ready(function(){
 			alert("ha ocurrido un problema");
 		}*/
 		llenar_tabla();
-		$("#txt_usuario").val('');
-		$("#txt_ip").val('');
+		$("#txt_titulo").val('');
 	}
 
 });
@@ -73,21 +72,21 @@ function eliminar_editar (){
 
 
 function llenar_tabla(){
+	// $.ajax({
+	// 	type: "POST",
+	// 	url:"unidad_medida/traer_usuarios",
+	// 	success: function(res){
+	// 		var usuario = $("#txt_usuario");
+	// 		var datos = JSON.parse(res.trim());
+	// 		$.each(datos.datos, function(data) {
+	// 			usuario.append($("<option />").val(this.id).text(this.nombre));
+	// 		});
+	//
+	// 	}
+	// });
 	$.ajax({
 		type: "POST",
-		url:"dispositivo/traer_usuarios",
-		success: function(res){
-			var usuario = $("#txt_usuario");
-			var datos = JSON.parse(res.trim());
-			$.each(datos.datos, function(data) {
-				usuario.append($("<option />").val(this.id).text(this.nombre));
-			});
-
-		}
-	});
-	$.ajax({
-		type: "POST",
-		url:"dispositivo/llenar_tabla",
+		url:"unidad_medida/llenar_tabla",
 		//dataType:"json",
 		success: function(res){
 			$("#dv_tabla").empty();
@@ -118,30 +117,14 @@ function click_editar(){
 			var datos_json = JSON.stringify(datos);
 
 			enviar = {info: datos_json};
-
-			$.ajax({
-				type: "POST",
-				url:"dispositivo/traer_usuarios",
-				success: function(res){
-					var usuario = $("#txt_EditarUsuario");
-					var datos = JSON.parse(res.trim());
-					$.each(datos.datos, function(data) {
-						usuario.append($("<option />").val(this.id).text(this.nombre));
-					});
-
-				}
-			});
-
 			//alert("d");
 			$.ajax({
 				type: "POST",
 				data: enviar,
-				url:"dispositivo/traer_dato",
+				url:"unidad_medida/traer_dato",
 				dataType:"json",
 				success: function(res){
-					$("#txt_EditarUsuario").val(res.datos.usuario);
-					$("#txt_EditarIp").val(res.datos.ip);
-
+					$("#txt_EditarTitulo").val(res.datos.titulo);
 					$("#txt_EditarId").val(res.datos.id);
 					mostrarVentana();
 					editar();
@@ -157,7 +140,7 @@ function click_editar(){
 function editar (){
 
 	$("#btn_actualizar").click(function(){
-		var datos = {id: $("#txt_EditarId").val(), usuario:$("#txt_EditarUsuario").val(), ip:$("#txt_EditarIp").val()};
+		var datos = {id: $("#txt_EditarId").val(), titulo:$("#txt_EditarTitulo").val()};
 		var datos_json = JSON.stringify(datos);
 
 		enviar = {info: datos_json};
@@ -165,7 +148,7 @@ function editar (){
 		$.ajax({
 			type: "POST",
 			data: enviar,
-			url:"dispositivo/actualizar",
+			url:"unidad_medida/actualizar",
 			dataType:"json",
 			success: function(res){
 				alert(res.msj);
@@ -209,7 +192,7 @@ function click_eliminar(){
 			$.ajax({
 				type: "POST",
 				data: enviar,
-				url:"dispositivo/eliminar",
+				url:"unidad_medida/eliminar",
 				dataType:"json",
 				success: function(res){
 					//console.log(res);

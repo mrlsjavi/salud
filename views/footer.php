@@ -2,7 +2,7 @@
 	</div>
 
 	<div id="footer">
-		<label style="color:white">Powered by Javier</label>
+		<label style="color:white">Health Without Worries</label>
 	</div>
 
 </body>

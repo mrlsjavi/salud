@@ -1,20 +1,12 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
 class Sensor extends Controller{
-
 	function __construct(){
 		parent::__construct(); //llamar el construct del padre que es controller(libs/controller)
-
-
 		//Auth::handleLogin();
-
-
 		//ya tenogo incluido el jquery y aqui mando a llamar su javascript independiente de cada vista
 		$this->view->js = array('sensor/js/default.js');
-
-
 	}
-
 	function index(){
 		$this->view->title = 'Sensores';
 		$this->view->render('header');
@@ -24,34 +16,22 @@ class Sensor extends Controller{
 		$this->view->render('sensor/index');
 		$this->view->render('footer');
 	}
-
-
-
 	function guardar(){
 		$this->model->guardar();
 	}
-
 	function llenar_tabla(){
 		$this->model->llenar_tabla();
 	}
-
 	function eliminar(){
 		$this->model->eliminar();
 	}
-
 	function traer_usuarios(){
 		$this->model->traer_usuarios();
 	}
-
 	function traer_dato(){
 		$this->model->traer_dato();
 	}
-
 	function actualizar(){
 		$this->model->actualizar();
 	}
-
-
-
-
 }

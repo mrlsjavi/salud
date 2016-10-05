@@ -21,6 +21,7 @@ $(document).ready(function(){
 			success: function(res){
 				alert(res);
 				$("#txt_login").val('');
+				ocultarVentanaClave();
 				
 				
 
@@ -30,6 +31,12 @@ $(document).ready(function(){
 
 		});
 	})
+
+	$("#btn_cancelar").click(function(){
+		ocultarVentanaClave();
+		$("#txt_login").val(null);
+		
+	});
 
 
 

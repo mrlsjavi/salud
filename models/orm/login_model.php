@@ -53,8 +53,48 @@
 			
 		}
 
-    public function clave(){
-       
+  public function clave(){
+    $info = json_decode($_POST['info']);
+    //generar una clave 
+   //e6caf2a0
+    //tengo que ira  guardarla 
+    $general = new general_orm;
+    $result = $general::query("select * from usuario where estado =  1 and login = '".trim($info->login)."'");
+    $respuesta ='';
+
+    if($result){
+      $id = '';
+      foreach($result as $r){
+        $id = $r['id'];
+      }
+      $logitud = 8;
+      $psswd = substr( md5(microtime()), 1, $logitud);
+
+      $general::query("update usuario set password ='".md5($psswd)."' where id = ".$id);
+
+        $headers = "From: HWW@healthwithoutworries.com";
+        $correo_destino= trim($info->login);
+        $titulo = "Password Reset";
+        $mensaje  = "Su nueva clave es :".$psswd;
+
+        $enviado = mail($correo_destino, $titulo, $mensaje, $headers);
+        if($enviado){
+          $respuesta = "Correo enviado!".$psswd;
+        }
+        else{
+          $respuesta = "fallo el envio";
+        }
+        
+
+    }
+    else {
+      $respuesta ="Ha ocurrido un error porfavor intentar mas tarde";
+    }
+
+
+    echo $respuesta;
+    
+     
   }
 
 	}

@@ -17,11 +17,12 @@ require_once("models/orm/config.php");
 require_once("models/orm/ORM.php");
 
 require_once("models/orm/usuario_orm.php");
-require_once("models/orm/dispositivo_orm.php");
-require_once("models/orm/sensor_orm.php");
+//require_once("models/orm/dispositivo_orm.php");
+//require_once("models/orm/sensor_orm.php");
 
 require_once("models/orm/accion_orm.php");
 require_once("models/orm/pagina_orm.php");
+require_once("models/orm/dispositivo_orm.php");
 require_once("models/orm/rol_orm.php");
 require_once("models/orm/general_orm.php");
 require_once("models/orm/permiso_orm.php");
