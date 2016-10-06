@@ -1,6 +1,6 @@
 <?php
 	class bitacora_orm extends ORM {
-		public $id, $usuario, $obj_usuario, $medida_sensor, $obj_medida_sensor, $dato, $fecha_hora, $datos;
+		public $id, $usuario, $obj_usuario, $medida_sensor, $obj_medida_sensor, $dato, $fecha_hora;
 		protected static $table = 'bitacora';
 
 		public function __construct($data){
@@ -30,11 +30,6 @@
 
 			$this->dato = isset($data['dato']) ? $data['dato'] : null;
 			$this->fecha_hora = isset($data['fecha_hora']) ? $data['fecha_hora'] : null;
-			$this->datos = isset($data['datos']) ? $data['datos'] : null;
-			
-			
-
-			
 		}
 	}
 
