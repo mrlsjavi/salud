@@ -1,5 +1,4 @@
 <style type="text/css">
-
 	.editar {color:blue;}
 	.eliminar {color:red;}
 </style>

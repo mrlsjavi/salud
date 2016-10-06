@@ -1,6 +1,6 @@
 <?php
 
-class Live extends Controller{
+class Usuario_Alerta extends Controller{
 
 	function __construct(){
 		parent::__construct(); //llamar el construct del padre que es controller(libs/controller)
@@ -10,18 +10,18 @@ class Live extends Controller{
 
 		
 		//ya tenogo incluido el jquery y aqui mando a llamar su javascript independiente de cada vista 
-		$this->view->js = array('live/js/default.js', 'live/js/circle-progress.js', 'live/js/gradient-progress-bar.js', 'live/js/Chart.js');
+		$this->view->js = array('usuario_alerta/js/default.js');
 
 		
 	}
 
 	function index(){
-		$this->view->title = 'Live';
+		$this->view->title = 'Alertas';
 		$this->view->render('header');
 		//echo Hash::create('md5', 'test', HASH_PASSWORD_KEY);
 		//echo Hash::create('sha256', 'test', HASH_PASSWORD_KEY);
 		//vista carpeta/archivo
-		$this->view->render('live/index');
+		$this->view->render('usuario_alerta/index');
 		$this->view->render('footer');
 	}
 
@@ -31,24 +31,38 @@ class Live extends Controller{
 		$this->model->guardar();
 	}
 
-	function vivo(){
-		$this->model->vivo();
+	function traer_sensor()
+	{
+		$this->model->traer_sensor();
 	}
 
-	function select(){
-		$this->model->select();
-	}
-
-	function historial(){
-		$this->model->historial();
+	function traer_paginas(){
+		$this->model->traer_paginas();
 	}
 
 	function llenar_tabla(){
 		$this->model->llenar_tabla();
 	}
 
-    //http://js-tutorial.com/jquery-circle-progress-draw-animated-circular-progress-bars-1114
+	function traer_alertas(){
+		$this->model->traer_alertas();
+	}
 
+	function verificar_usuario(){
+		$this->model->verificar_usuario();
+	}
+
+	function traer_dato(){
+		$this->model->traer_dato();
+	}
+
+	function actualizar(){
+		$this->model->actualizar();
+	}
+
+	function eliminar(){
+		$this->model->eliminar();
+	}
 
 	
 }

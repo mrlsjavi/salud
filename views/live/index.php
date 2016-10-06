@@ -135,14 +135,42 @@ function openCity(evt, cityName) {
     	<select id="slt_sensor">
   
     	</select>
+    	<label>Mes</label>
+    	<select id="slt_mes">
+    		<option>Enero</option>
+    		<option>Febrero</option>
+    		<option>Marzo</option>
+    		<option>Abril</option>
+    		<option>Mayo</option>
+    		<option>Junio</option>
+    		<option>Julio</option>
+    		<option>Agosto</option>
+    		<option>Septiembre</option>
+    		<option>Octubre</option>
+    		<option>Noviembre</option>
+    		<option>Diciembre</option>
+    	</select>
+    	<label>year</label>
+    	<select>
+    		<option>2016</option>
+    	</select>
     </div>
   	<br/>
   	<br/>
-<div id="dv_graficas">
-	
+
+  	<div id="dv_tabla">
 
 
-</div>
+	</div>
+	<br/>
+	<br/>
+	<div id="dv_graficas">
+		
+
+
+	</div>
+
+
 
  	
 

@@ -89,6 +89,7 @@ $(document).ready(function(){
 				$("#txt_login").val(res.datos[0]['login']);
 				$("#txt_direccion").val(res.datos[0]['direccion']);
 				$("#txt_telefono").val(res.datos[0]['telefono']);
+				$("#txt_identificador").val(res.datos[0]['identificador']);
 				
 				
 				

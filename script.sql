@@ -1,6 +1,6 @@
 /*
 Created: 03/09/2016
-Modified: 24/09/2016
+Modified: 01/10/2016
 Model: MySQL 5.5
 Database: MySQL 5.5
 */
@@ -19,6 +19,7 @@ CREATE TABLE usuario
   password Varchar(100),
   direccion Varchar(200),
   telefono Int,
+  identificador Int,
   estado Int,
   PRIMARY KEY (id)
 )
@@ -168,7 +169,7 @@ CREATE TABLE usuario_alerta
   id Int NOT NULL AUTO_INCREMENT,
   usuario Int,
   alerta Int,
-  mail Varbinary(100),
+  mail Varchar(150),
   notificacion Int,
   estado Int,
   PRIMARY KEY (id)

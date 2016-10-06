@@ -26,6 +26,10 @@
 		<input type="text" id="txt_direccion">
 		<br/>
 		<br/>
+		<label>Identificador</label>
+		<input type="text" id="txt_identificador"  readonly="readonly">
+		<br/>
+		<br/>
 		<label>Telefono</label>
 		<input type="text" id="txt_telefono">
 		<br/>

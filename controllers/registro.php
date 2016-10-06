@@ -31,6 +31,10 @@ class Registro extends Controller{
 		$this->model->guardar();
 	}
 
+	function verificar_correo(){
+		$this->model->verificar_correo();
+	}
+
 	
     
 

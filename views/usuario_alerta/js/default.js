@@ -2,10 +2,16 @@ $(document).ready(function(){
 
 	window.onload = function(){
 		llenar_tabla();
+		alertas();
 	};
     
     $("#btn_guardar").click(function(){
-    	var datos = {nombre: $("#txt_nombre").val()};
+    	//verificar_usuario();
+    	verificar_usuario();
+    });
+
+    function verificar_usuario(){
+    	var datos = {usuario: $("#txt_usuario").val()};
 		var datos_json = JSON.stringify(datos)
 		
 		enviar = {info: datos_json};
@@ -13,24 +19,52 @@ $(document).ready(function(){
 		$.ajax({
 			type: "POST",
 			data: enviar,
-			url:"rol/guardar",
-			dataType:"json",
+			url:"usuario_alerta/verificar_usuario",
+			//dataType:"json",
 			success: function(res){
-				alert(res.msj);
-				/*if(res.cod ==1){
-					alert(res.msj);
+				if(res == 1){
+					//vamo a guardar 
+					guardar();
+					llenar_tabla();
+					$("#txt_usuario").val(null);
+					$("#txt_correo").val(null);
+					$("#slt_alerta").val('0').attr('selected', 'selected');
 				}
 				else{
-					alert("ha ocurrido un problema");
-				}*/
-				llenar_tabla();
-				$("#txt_nombre").val('');
+					alert("No valido");
+				}
+				
 			}
 
 		});
+    }
 
-    });
+    function guardar(){
+    	var checkbox= 0;
+    	if($("#box").prop('checked')){
+    		checkbox= 1;
+    	}
+    	else{
+    		checkbox= 0;
+    	}
 
+    	var datos = {usuario: $("#txt_usuario").val(), alerta:$("#slt_alerta").val(), correo:$("#txt_correo").val(), notificacion: checkbox};
+		var datos_json = JSON.stringify(datos)
+		
+		enviar = {info: datos_json};
+		//alert("d");
+		$.ajax({
+			type: "POST",
+			data: enviar,
+			url:"usuario_alerta/guardar",
+			dataType:"json",
+			success: function(res){
+				alert(res.msj);
+				
+			}
+
+		});
+    }
 
     function data_table(){
     	 $('#javier').DataTable( {
@@ -75,7 +109,7 @@ $(document).ready(function(){
     	$.ajax({
 			type: "POST",
 			
-			url:"rol/llenar_tabla",
+			url:"usuario_alerta/llenar_tabla",
 			//dataType:"json",
 			success: function(res){
 				$("#dv_tabla").empty();
@@ -110,13 +144,22 @@ $(document).ready(function(){
 				$.ajax({
 					type: "POST",
 					data: enviar,
-					url:"rol/traer_dato",
+					url:"usuario_alerta/traer_dato",
 					dataType:"json",
 					success: function(res){
 						
 						
-						$("#txt_EditarNombre").val(res.datos[0]['nombre']);
+						$("#txt_EditarUsuario").val(res.datos[0]['obj_usuario']['nombre']);
+						$("#slt_EditarAlerta").val(res.datos[0]['alerta']).attr('selected', 'selected');
 						$("#txt_EditarId").val(res.datos[0]['id']);
+						$("#txt_EditarCorreo").val(res.datos[0]['mail']);
+						if(res.datos[0]['notificacion'] == 1){
+							$("#EditarBox").prop('checked', true);
+						}
+						else{
+							$("#EditarBox").prop('checked', false);
+						}
+					
 						mostrarVentana();
 						editar();
 
@@ -131,7 +174,15 @@ $(document).ready(function(){
    function editar (){
 
 	   $("#btn_actualizar").click(function(){
-	   		var datos = {id: $("#txt_EditarId").val(), nombre:$("#txt_EditarNombre").val()};
+	   	var checkbox= 0;
+    	if($("#EditarBox").prop('checked')){
+    		checkbox= 1;
+    	}
+    	else{
+    		checkbox= 0;
+    	}
+
+	   		var datos = {id: $("#txt_EditarId").val(), correo:$("#txt_EditarCorreo").val(), notificacion:checkbox};
 				var datos_json = JSON.stringify(datos)
 				
 				enviar = {info: datos_json};
@@ -139,7 +190,7 @@ $(document).ready(function(){
 				$.ajax({
 					type: "POST",
 					data: enviar,
-					url:"rol/actualizar",
+					url:"usuario_alerta/actualizar",
 					dataType:"json",
 					success: function(res){
 						alert(res.msj);
@@ -183,7 +234,7 @@ $(document).ready(function(){
 			$.ajax({
 				type: "POST",
 				data: enviar,
-				url:"rol/eliminar",
+				url:"usuario_alerta/eliminar",
 				dataType:"json",
 				success: function(res){
 					//console.log(res);
@@ -198,6 +249,24 @@ $(document).ready(function(){
    		}
 
    	});
+   }
+
+   function alertas(){
+   		$.ajax({
+			type: "POST",
+			//data: enviar,
+			url:"usuario_alerta/traer_alertas",
+			//dataType:"json",
+			success: function(res){
+				
+				
+			$("#slt_alerta").append(res);
+			$("#slt_EditarAlerta").append(res);
+
+				
+			}
+
+		});
    }
 
 

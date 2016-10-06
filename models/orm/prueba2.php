@@ -65,6 +65,14 @@ and p.id in (1, 2, 3, 4, 5)");
         }
 
 
+
+   echo "<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>";
+   $r = $javier::query("select Max(identificador) as identificador from usuario where estado  = 1");
+   $identificador = '';
+   foreach ($r as $id) {
+      $identificador = $id['identificador']+1;
+   }
+   echo "el identificador es :".$identificador;
    /* $roles = rol_orm::where('estado', 1);
     print_r($roles);
     foreach ($roles as $r) {
