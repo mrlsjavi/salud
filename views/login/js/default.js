@@ -16,7 +16,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: "POST",
 			data: enviar,
-			url:"login/clave",
+			url:"login/prueba",
 			//dataType:"json",
 			success: function(res){
 				alert(res);

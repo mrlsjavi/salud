@@ -26,4 +26,8 @@ class Login extends Controller{
 	function clave(){
 		$this->model->clave();
 	}
+
+	function prueba(){
+		$this->model->prueba();
+	}
 }

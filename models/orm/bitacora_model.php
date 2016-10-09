@@ -9,8 +9,11 @@ class Bitacora_Model {
 	}
 
 	public function guardar(){
-		$info =   json_decode(str_replace("\\", "", $_POST['info']));
+	/*	$info =   json_decode(str_replace("\\", "", $_POST['info']));
 		print_r($info);
+		echo "prueba";*/
+
+		print_r($_POST['info']);
 		
 		//var_dump($info);
 		/*foreach ($info as $i) {
