@@ -10,6 +10,7 @@ class Sensor_Model {
 			'id'=>'',
 			'titulo'=>$info->titulo,
 			'descripcion'=>$info->descripcion,
+			'tipo'=>$info->tipo,
 			'estado'=>1);
 		$sensor = new sensor_orm($data);
 		$result = $sensor->save();
@@ -22,6 +23,7 @@ class Sensor_Model {
             <tr>
                 <th>Titulo</th>
 								<th>Descripcion</th>
+								<th>Codigo</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -30,6 +32,7 @@ class Sensor_Model {
             <tr>
                 <th>Titulo</th>
 								<th>Descripcion</th>
+								<th>Codigo</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -37,11 +40,13 @@ class Sensor_Model {
         <tbody id="">
         ';
         //validar si hay respuest
+				print_r($sensores);
 		if($sensores!=null && count($sensores) > 0){
 			foreach ($sensores as $s) {
 				$tabla  = $tabla."<tr style=\"text-align: center;\">
 										<td>".$s->titulo."</td>
 										<td>".$s->descripcion."</td>
+										<td>".$s->tipo."</td>
 										<td class = 'editar'   id='".$s->id."'>Editar</td>
 										<td class = 'eliminar' id='".$s->id."'>Eliminar</td>";
 			}
@@ -72,6 +77,7 @@ class Sensor_Model {
 			'id'=>$info->id,
 			'titulo'=>$info->titulo,
 			'descripcion'=>$info->descripcion,
+			'tipo'=>$info->tipo,
 			'estado'=>1);
 		$sensor = new sensor_orm($data);
 		$result = $sensor->save();

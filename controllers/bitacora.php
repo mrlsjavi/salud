@@ -8,11 +8,11 @@ class Bitacora extends Controller{
 
 		//Auth::handleLogin();
 
-		
-		//ya tenogo incluido el jquery y aqui mando a llamar su javascript independiente de cada vista 
+
+		//ya tenogo incluido el jquery y aqui mando a llamar su javascript independiente de cada vista
 		//$this->view->js = array('rol/js/default.js');
 
-		
+
 	}
 
 /*	function index(){
@@ -25,14 +25,26 @@ class Bitacora extends Controller{
 		$this->view->render('footer');
 	}*/
 
-	
+
 
 	function guardar(){
 		$this->model->guardar();
 	}
 
-    
+	function historico(){
+		$this->model->historico();
+	}
+
+	function resumen(){
+		$this->model->historico_resumen();
+	}
+
+	function vivo(){
+		$this->model->monitor_vivo();
+	}
 
 
-	
+
+
+
 }

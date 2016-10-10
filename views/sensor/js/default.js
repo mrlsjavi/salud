@@ -5,7 +5,7 @@ $(document).ready(function(){
 	};
 
 	$("#btn_guardar").click(function(){
-		var datos = {titulo: $("#txt_titulo").val(), descripcion: $("#txt_descripcion").val()};
+		var datos = {titulo: $("#txt_titulo").val(), descripcion: $("#txt_descripcion").val(), tipo: $("#txt_codigo").val()};
 		var datos_json = JSON.stringify(datos);
 
 		enviar = {info: datos_json};
@@ -26,6 +26,7 @@ $(document).ready(function(){
 		llenar_tabla();
 		$("#txt_titulo").val('');
 		$("#txt_descripcion").val('');
+		$("#txt_tipo").val('');
 	}
 
 });
@@ -127,6 +128,7 @@ function click_editar(){
 				success: function(res){
 					$("#txt_EditarTitulo").val(res.datos.titulo);
 					$("#txt_EditarDescripcion").val(res.datos.descripcion);
+					$("#txt_EditarCodigo").val(res.datos.tipo);
 
 					$("#txt_EditarId").val(res.datos.id);
 					mostrarVentana();
@@ -143,7 +145,7 @@ function click_editar(){
 function editar (){
 
 	$("#btn_actualizar").click(function(){
-		var datos = {id: $("#txt_EditarId").val(), titulo:$("#txt_EditarTitulo").val(), descripcion:$("#txt_EditarDescripcion").val()};
+		var datos = {id: $("#txt_EditarId").val(), titulo:$("#txt_EditarTitulo").val(), descripcion:$("#txt_EditarDescripcion").val(), tipo: $("#txt_EditarCodigo").val()};
 		var datos_json = JSON.stringify(datos);
 
 		enviar = {info: datos_json};

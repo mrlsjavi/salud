@@ -11,10 +11,13 @@
 
 	<div>
 		<label>Titulo</label>
-		<input id="txt_usuario" maxlength="30"></input>
+		<input id="txt_titulo" maxlength="30"></input>
 		<br />
 		<label>Descripcion</label>
 		<input type="text" id="txt_descripcion" maxlength="75" />
+		<br />
+		<label>Codigo</label>
+		<input type="text" id="txt_codigo" maxlength="2" />
 		<br/>
 		<br/>
 		<button id="btn_guardar">Guardar</button>
@@ -38,6 +41,9 @@
 		<label>Descripcion</label>
 		<input type="text" id="txt_EditarDescripcion" maxlength="75"/>
 		<br/>
+		<label>Codigo</label>
+		<input type="text" id="txt_EditarCodigo" maxlength="2" />
+		<br />
 		<br/>
 		<button id="btn_actualizar">Actualizar</button>
 	</div>

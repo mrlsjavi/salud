@@ -65,6 +65,3 @@ $bootstrap = new Bootstrap();
 setErrorFile($path)
 setDefaultFile($path)*/
 $bootstrap->init();
-
-
-
