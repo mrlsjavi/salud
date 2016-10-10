@@ -10,7 +10,7 @@ class Live extends Controller{
 
 		
 		//ya tenogo incluido el jquery y aqui mando a llamar su javascript independiente de cada vista 
-		$this->view->js = array('live/js/default.js', 'live/js/circle-progress.js', 'live/js/gradient-progress-bar.js', 'live/js/Chart.js');
+		$this->view->js = array('live/js/default.js', 'live/js/circle-progress.js', 'live/js/gradient-progress-bar.js', 'live/js/Chart.js', 'live/js/tableExport.js', 'live/js/jquery.base64.js', 'live/js/jspdf.js', 'live/js/sprintf.js', 'live/js/base64.js', 'live/js/html2canvas.js');
 
 		
 	}

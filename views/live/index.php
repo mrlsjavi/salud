@@ -159,13 +159,45 @@ function openCity(evt, cityName) {
   	<br/>
 
   	<div id="dv_tabla">
+  		<button id='btn_excel'>excel</button>
+  		<button id='btn_pdf'>pdf</button>
 
+<table id="javier" class="display nowrap" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Nombre</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                
+            </tr>
+        </tfoot>
+        <tbody id="">
+        	<tr>
+        		<td>javier</td>
+        		<td>javier</td>
+        		<td>javier</td>
+        	</tr>
+        	<tr>
+        		<td>javier</td>
+        		<td>javier</td>
+        		<td>javier</td>
+        	</tr>
+        </tbody>
+   		</table>	
 
 	</div>
 	<br/>
 	<br/>
 	<div id="dv_graficas">
-		
+			
 
 
 	</div>

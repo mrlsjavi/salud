@@ -2,8 +2,8 @@
 require_once('Database.php'); 
 	
 // Database 
-//define('DB_HOST', '52.36.27.188');  
 define('DB_HOST', 'localhost');  
+//define('DB_HOST', 'localhost');  
 define('DB_USER', 'root');  
 //define('DB_PASSWORD', 'javier');  
 define('DB_PASSWORD', ''); 

@@ -3,7 +3,7 @@ $(document).ready(function(){
 			tiempo_real();
 			llenar_select();
 			historial();
-			llenar_tabla();
+			//llenar_tabla();
 	};
 
 
@@ -99,5 +99,16 @@ $(document).ready(function(){
 
 		});
 	}
+
+	$("#btn_excel").click(function(){
+		//$('#javier').tableExport({type:'pdf',escape:'false'});
+		$("#javier").tableExport({type:'excel',escape:'false'});
+	});
+
+	$("#btn_pdf").click(function(){
+		$("#javier").tableExport({type:'pdf', escape:'false'});
+	});
+
+	 
 })
 

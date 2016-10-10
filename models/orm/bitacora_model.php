@@ -9,6 +9,7 @@ class Bitacora_Model {
 	}
 
 	public function guardar(){
+		
 		$info = json_decode(str_replace("\\", "", $_POST['info']));
 		$dispositivo = dispositivo_orm::where('ip', $info->ip);
 
@@ -23,18 +24,6 @@ class Bitacora_Model {
 		$sensorFlujoAire = sensor_orm::find(3);
 		//Sensor Aire
 		$sensorPresion = sensor_orm::find(4);
-
-		
-
-
-		$
-		//var_dump($info);
-		/*foreach ($info as $i) {
-			# code...
-			echo $i->sensor;
-		}*/
-
-
 
 	}
 
