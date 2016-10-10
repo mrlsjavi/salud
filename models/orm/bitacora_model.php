@@ -102,6 +102,7 @@ class Bitacora_Model {
 	}
 
 	public function historico(){
+		header('Content-Type: application/json');
 		$bitacoras = bitacora_orm::all();
 		$listado = array();
 		if($bitacoras ==null || count($bitacoras) == 0){
@@ -145,6 +146,7 @@ class Bitacora_Model {
 	}
 
 	public function monitor_vivo(){
+		header('Content-Type: application/json');
 		$general = new general_orm();
 		$bitacoras = $general::query("select * from bitacora where CAST(fecha_hora AS DATE) = CURDATE() order by fecha_hora desc limit 6");
 		$listado = array();
@@ -190,6 +192,7 @@ class Bitacora_Model {
 	}
 
 	public function historico_resumen(){
+		header('Content-Type: application/json');
 		$general = new general_orm();
 		$consulta = 'select id, usuario, medida_sensor, avg(dato) as dato, CONCAT(YEAR(fecha_hora),"-" ,MONTH(fecha_hora), "-", 30) as fecha_hora from bitacora group by medida_sensor, YEAR(fecha_hora), MONTH(fecha_hora)';
 		$bitacoras = $general::query($consulta);
