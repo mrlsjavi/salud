@@ -1,4 +1,8 @@
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+ <link rel="stylesheet" href="http://tympanus.net/Tutorials/CSS3Tables/css/style.css" type="text/css" media="screen"/>
+      
+
+
 <STYLE TYPE="text/css">
 	
 	.boton {color:blue;}
@@ -116,7 +120,7 @@ function openCity(evt, cityName) {
 
 <div class="w3-row">
   <a href="#" onclick="openCity(event, 'Vivo');" >
-    <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Vivo</div>
+    <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Monitor en Tiempo Real</div>
   </a>
   <a href="#" onclick="openCity(event, 'Historial');">
     <div class="w3-half tablink w3-bottombar w3-hover-light-grey w3-padding">Historial</div>
@@ -137,61 +141,42 @@ function openCity(evt, cityName) {
     	</select>
     	<label>Mes</label>
     	<select id="slt_mes">
-    		<option>Enero</option>
-    		<option>Febrero</option>
-    		<option>Marzo</option>
-    		<option>Abril</option>
-    		<option>Mayo</option>
-    		<option>Junio</option>
-    		<option>Julio</option>
-    		<option>Agosto</option>
-    		<option>Septiembre</option>
-    		<option>Octubre</option>
-    		<option>Noviembre</option>
-    		<option>Diciembre</option>
+    		<option value="01">Enero</option>
+    		<option value="02">Febrero</option>
+    		<option value="03">Marzo</option>
+    		<option value="04">Abril</option>
+    		<option value="05">Mayo</option>
+    		<option value="06">Junio</option>
+    		<option value="07">Julio</option>
+    		<option value="08">Agosto</option>
+    		<option value="09">Septiembre</option>
+    		<option value="10">Octubre</option>
+    		<option value="11">Noviembre</option>
+    		<option value="12">Diciembre</option>
     	</select>
     	<label>year</label>
-    	<select>
+    	<select id="slt_anio">
     		<option>2016</option>
     	</select>
+    	
+    	<input id = 'btn_buscar' type='image' src= "<?php URL;?>public/images/search.png" width='25' height='25'/>
+  		
     </div>
   	<br/>
   	<br/>
+  	<div>
+  		
+  		<input id = 'btn_excel' type='image' src= "<?php URL;?>public/images/excel.png" width='25' height='25'/>
+  		<input id = 'btn_pdf' type='image' src= "<?php URL;?>public/images/pdf.png" width='35' height='35'/>
+  		
 
+  	</div>
+  	<br/>
+  	<br/>
   	<div id="dv_tabla">
-  		<button id='btn_excel'>excel</button>
-  		<button id='btn_pdf'>pdf</button>
+  		
 
-<table id="javier" class="display nowrap" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Nombre</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-                
-            </tr>
-        </tfoot>
-        <tbody id="">
-        	<tr>
-        		<td>javier</td>
-        		<td>javier</td>
-        		<td>javier</td>
-        	</tr>
-        	<tr>
-        		<td>javier</td>
-        		<td>javier</td>
-        		<td>javier</td>
-        	</tr>
-        </tbody>
-   		</table>	
+
 
 	</div>
 	<br/>

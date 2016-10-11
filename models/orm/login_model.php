@@ -53,6 +53,22 @@
 			
 		}
 
+    public function entrar(){
+      $user = usuario_orm::where_login(trim($_POST['login']), trim(md5($_POST['password'])));
+
+      if($user){
+        //echo "entro";
+        $result = array('cod'=> 1, 'data' =>$user);
+        echo json_encode($result);
+            
+      }
+      else{
+        $result = array('cod'=> 0, 'data' =>'');  
+        echo json_encode($result);
+      }
+
+    }
+
   public function clave(){
     $info = json_decode($_POST['info']);
     //generar una clave 
@@ -76,16 +92,26 @@
 
         $headers = "From: HWW@healthwithoutworries.com";
         $correo_destino= trim($info->login);
+               
         $titulo = "Password Reset";
         $mensaje  = "Su nueva clave es :".$psswd;
 
-        $enviado = mail($correo_destino, $titulo, $mensaje, $headers);
-        if($enviado){
-          $respuesta = "Correo enviado!".$psswd;
+        try {
+           $enviado = mail($correo_destino, $titulo, $mensaje, $headers);
+          if($enviado){
+            $respuesta = "Correo enviado!".$psswd;
+          }
+          else{
+            $respuesta = "fallo el envio".$psswd;
+          }
+        
+
+          
+        } catch (Exception $e) {
+          $respuesta = $e;
         }
-        else{
-          $respuesta = "fallo el envio";
-        }
+
+       
         
 
     }
@@ -98,60 +124,6 @@
     
      
   }
-  function prueba(){
-    require 'mail/PHPMailerAutoload.php';
-
-
-//require '../PHPMailerAutoload.php';
-//Create a new PHPMailer instance
-$mail = new PHPMailer;
-//Tell PHPMailer to use SMTP
-$mail->isSMTP();
-//Enable SMTP debugging
-// 0 = off (for production use)
-// 1 = client messages
-// 2 = client and server messages
-$mail->SMTPDebug = 2;
-//Ask for HTML-friendly debug output
-$mail->Debugoutput = 'html';
-//Set the hostname of the mail server
-$mail->Host = 'smtp.gmail.com';
-// use
-// $mail->Host = gethostbyname('smtp.gmail.com');
-// if your network does not support SMTP over IPv6
-//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-$mail->Port = 587;
-//Set the encryption system to use - ssl (deprecated) or tls
-$mail->SMTPSecure = 'tls';
-//Whether to use SMTP authentication
-$mail->SMTPAuth = true;
-//Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = "mrlsjavi@gmail.com";
-//Password to use for SMTP authentication
-$mail->Password = "Atletajavier01";
-//Set who the message is to be sent from
-$mail->setFrom('from@example.com', 'First Last');
-//Set an alternative reply-to address
-$mail->addReplyTo('replyto@example.com', 'First Last');
-//Set who the message is to be sent to
-$mail->addAddress('mrlsjavi@gmail.com', 'Javier Morales');
-//Set the subject line
-$mail->Subject = 'PHPMailer GMail SMTP test';
-//Read an HTML message body from an external file, convert referenced images to embedded,
-//convert HTML into a basic plain-text alternative body
-$mail->msgHTML("llega el correo");
-//Replace the plain text body with one created manually
-$mail->AltBody = 'This is a plain-text message body';
-//Attach an image file
-//$mail->addAttachment('images/phpmailer_mini.png');
-//send the message, check for errors
-if (!$mail->send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
-} else {
-    echo "Message sent!";
-}
-
-    
-  }
+ 
 
 	}

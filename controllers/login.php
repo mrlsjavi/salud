@@ -30,4 +30,8 @@ class Login extends Controller{
 	function prueba(){
 		$this->model->prueba();
 	}
+
+	function entrar(){
+		$this->model->entrar();
+	}
 }
