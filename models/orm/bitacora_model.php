@@ -5,11 +5,10 @@ class Bitacora_Model {
 	public function __construct(){
 
 			//parent::__construct();
-
 	}
 
 	public function guardar(){
-
+		date_default_timezone_set('America/Guatemala');
 		$info = json_decode(str_replace("\\", "", $_POST['info']));
 		$dispositivo = dispositivo_orm::where('ip', $info->ip)[0];
 		$data = $info->data;
@@ -28,14 +27,14 @@ class Bitacora_Model {
 		$sensorSistole = medida_sensor_orm::find(4);
 
 		$datosPulsiometro = explode(",",$datosArray[0]);
-		$fechaHora = date('Y-m-d H:m:s');
+		$fechaHora = new DateTime();
 
 		$dataPulso = array(
 			'id' => '',
 			'usuario' => $dispositivo->usuario,
 			'medida_sensor' => $sensorPulso->id,
 			'dato' => $datosPulsiometro[0],
-			'fecha_hora' => $fechaHora,
+			'fecha_hora' => $fechaHora->format('Y-m-d H:i:s'),
 		);
 
 		$dataOxigeno = array(
@@ -43,7 +42,7 @@ class Bitacora_Model {
 			'usuario' => $dispositivo->usuario,
 			'medida_sensor' => $sensorOxigeno->id,
 			'dato' => $datosPulsiometro[1],
-			'fecha_hora' => $fechaHora,
+			'fecha_hora' => $fechaHora->format('Y-m-d H:i:s'),
 		);
 
 		$dataTemperatura = array(
@@ -51,7 +50,7 @@ class Bitacora_Model {
 			'usuario' => $dispositivo->usuario,
 			'medida_sensor' => $sensorTemperatura->id,
 			'dato' => $datosArray[1],
-			'fecha_hora' => $fechaHora,
+			'fecha_hora' => $fechaHora->format('Y-m-d H:i:s'),
 		);
 
 		$dataAirFlow = array(
@@ -59,7 +58,7 @@ class Bitacora_Model {
 			'usuario' => $dispositivo->usuario,
 			'medida_sensor' => $sensorFlujoAire->id,
 			'dato' => $datosArray[2],
-			'fecha_hora' => $fechaHora,
+			'fecha_hora' => $fechaHora->format('Y-m-d H:i:s'),
 		);
 
 		$datosEsfigmomanometro = explode(",",$datosArray[3]);
@@ -68,7 +67,7 @@ class Bitacora_Model {
 			'usuario' => $dispositivo->usuario,
 			'medida_sensor' => $sensorSistole->id,
 			'dato' => $datosEsfigmomanometro[0],
-			'fecha_hora' => $fechaHora,
+			'fecha_hora' => $fechaHora->format('Y-m-d H:i:s'),
 		);
 
 		$dataDiastole = array(
@@ -76,7 +75,7 @@ class Bitacora_Model {
 			'usuario' => $dispositivo->usuario,
 			'medida_sensor' => $sensorDiastole->id,
 			'dato' => $datosEsfigmomanometro[1],
-			'fecha_hora' => $fechaHora,
+			'fecha_hora' => $fechaHora->format('Y-m-d H:i:s'),
 		);
 
 		$bitacoraPulso = new bitacora_orm($dataPulso);
@@ -106,7 +105,9 @@ class Bitacora_Model {
 		$bitacoras = bitacora_orm::all();
 		$listado = array();
 		if($bitacoras ==null || count($bitacoras) == 0){
-			return $listado;
+			header("HTTP/1.0 404 Not Found");
+			http_response_code(404);
+			return json_encode($listado);
 		}
 		foreach ($bitacoras as $bitacora) {
 			$listado [] = array(
@@ -151,7 +152,9 @@ class Bitacora_Model {
 		$bitacoras = $general::query("select * from bitacora where CAST(fecha_hora AS DATE) = CURDATE() order by fecha_hora desc limit 6");
 		$listado = array();
 		if($bitacoras ==null || count($bitacoras) == 0){
-			return $listado;
+			header("HTTP/1.0 404 Not Found");
+			http_response_code(404);
+			return json_encode($listado);
 		}
 		foreach ($bitacoras as $bitacora) {
 			$usuario = usuario_orm::find($bitacora['usuario']);
@@ -198,7 +201,9 @@ class Bitacora_Model {
 		$bitacoras = $general::query($consulta);
 		$listado = array();
 		if($bitacoras ==null || count($bitacoras) == 0){
-			return $listado;
+			header("HTTP/1.0 404 Not Found");
+			http_response_code(404);
+			return json_encode($listado);
 		}
 		foreach ($bitacoras as $bitacora) {
 			$usuario = usuario_orm::find($bitacora['usuario']);
