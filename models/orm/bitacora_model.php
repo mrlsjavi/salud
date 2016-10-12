@@ -127,6 +127,7 @@ class Bitacora_Model {
 					'sensor' => array(
 						'id'=>$bitacora->obj_medida_sensor->obj_sensor->id,
 						'titulo'=>$bitacora->obj_medida_sensor->obj_sensor->titulo,
+						'descripcion' => $bitacora->obj_medida_sensor->obj_sensor->descripcion,
 						'sensorType'=>$bitacora->obj_medida_sensor->obj_sensor->tipo,
 						'estado'=>$bitacora->obj_medida_sensor->obj_sensor->estado,
 					),
@@ -177,6 +178,7 @@ class Bitacora_Model {
 						'id'=>$medidaSensor->obj_sensor->id,
 						'titulo'=>$medidaSensor->obj_sensor->titulo,
 						'sensorType'=>$medidaSensor->obj_sensor->tipo,
+						'descripcion' => $medidaSensor->obj_sensor->descripcion,
 						'estado'=>$medidaSensor->obj_sensor->estado,
 					),
 					'unidadMedida' => array(
@@ -225,6 +227,7 @@ class Bitacora_Model {
 					'sensor' => array(
 						'id'=>$medidaSensor->obj_sensor->id,
 						'titulo'=>$medidaSensor->obj_sensor->titulo,
+						'descripcion' => $medidaSensor->obj_sensor->descripcion,
 						'sensorType'=>$medidaSensor->obj_sensor->tipo,
 						'estado'=>$medidaSensor->obj_sensor->estado,
 					),
