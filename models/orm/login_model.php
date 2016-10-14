@@ -1,31 +1,31 @@
 <?php
-  
+
 
 	class Login_Model {
 
 
 		public function __construct(){
 
-			
-			
+
+
 		}
 
 		public function run(){
 
-			
-			
+
+
 
 			//$usuario = usuario::where_login()
-			
-			
+
+
 			  $user = usuario_orm::where_login(trim($_POST['login']), trim(md5($_POST['password'])));
 
         //hacer el insert en responsable
-    
+
           //   echo "<br/><br/>";
             //print_r($user);
 
-           // rol, id, nombre, apellido, 
+           // rol, id, nombre, apellido,
 
             if($user){
               foreach ($user as $index => $u) {
@@ -47,10 +47,10 @@
               header('location: '.URL.'login');
             }
 
-			
 
 
-			
+
+
 		}
 
     public function entrar(){
@@ -58,12 +58,16 @@
 
       if($user){
         //echo "entro";
+        header('Content-Type: application/json');
         $result = array('cod'=> 1, 'data' =>$user);
         echo json_encode($result);
-            
+
       }
       else{
-        $result = array('cod'=> 0, 'data' =>'');  
+        header('Content-Type: application/json');
+        header("HTTP/1.0 401 Not Found");
+        http_response_code(401);
+        $result = array('cod'=> 0, 'data' =>'');
         echo json_encode($result);
       }
 
@@ -71,14 +75,14 @@
 
   public function clave(){
     $info = json_decode($_POST['info']);
-    //generar una clave 
+    //generar una clave
    //e6caf2a0
-    //tengo que ira  guardarla 
+    //tengo que ira  guardarla
     $general = new general_orm;
     $result = $general::query("select * from usuario where estado =  1 and login = '".trim($info->login)."'");
     $respuesta ='';
 
-    
+
 
     if($result){
       $id = '';
@@ -92,7 +96,7 @@
 
         $headers = "From: HWW@healthwithoutworries.com";
         $correo_destino= trim($info->login);
-               
+
         $titulo = "Password Reset";
         $mensaje  = "Su nueva clave es :".$psswd;
 
@@ -104,15 +108,15 @@
           else{
             $respuesta = "fallo el envio".$psswd;
           }
-        
 
-          
+
+
         } catch (Exception $e) {
           $respuesta = $e;
         }
 
-       
-        
+
+
 
     }
     else {
@@ -121,9 +125,9 @@
 
 
     echo $respuesta;
-    
-     
+
+
   }
- 
+
 
 	}
