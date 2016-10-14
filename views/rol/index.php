@@ -1,33 +1,15 @@
-<style type="text/css">
-
-	.editar {color:blue;}
-	.eliminar {color:red;}
-</style>
-
-<div>
-	<div>
+<div class="col-lg-12">
 	<h1>Administracion de Roles</h1>
-
-	</div>
-
-	<div>
+	<div class="form-group">
 		<label>Nombre</label>
-		<input type="text" id="txt_nombre"/>
-		<br/>
-		<br/>
-		<button id="btn_guardar">Guardar</button>
-		
+		<input type="text" id="txt_nombre" class="form-control"/>
 	</div>
-	
-	
-	<br/>
-	<br/>
-	<div id ="dv_tabla">
-		
-		
-	</div>
+	<div class="form-group text-right">
+		<button id="btn_guardar" class="btn btn-primary">Guardar</button>
+    </div>
+    <div id ="dv_tabla"></div>
 
-<div id="dv_edicion" style=" padding: 20px; position:fixed; width:350px; height: 190px; top:0; left:0;   border:#333333 3px solid; background-color: #F8F8FF; color:#000000; display:none;" >
+<div id="dv_edicion">
 
 	<div style="position:fixed"> 
 		<label>Nombre</label>

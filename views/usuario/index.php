@@ -61,7 +61,7 @@
 	</div>
 </div>
 
-<div id="dv_clave" style=" padding: 20px; position:fixed; width:350px; height: 190px; top:0; left:0;   border:#333333 3px solid; background-color: #F8F8FF; color:#000000; display:none;" >
+<div id="dv_clave">
 	<div style="position:fixed">
 		<label>Nueva Clave:</label>
 		<input type="password" id="txt_EditarPass"/>

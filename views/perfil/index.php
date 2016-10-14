@@ -1,64 +1,69 @@
-<style type="text/css">
+<div class="col-lg-12">
+    <h1>Perfil de Usuario</h1>
+	<div class="row">
+        <div class="col-lg-12 text-right">
+            <div class="form-group">
+                <button id="btn_clave" class="btn btn-warning">Reset Pass</button>
+            </div>
+        </div>
+    </div>
+	<div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input class="form-control" type="text" id="txt_nombre"/>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Correo</label>
+                <input class="form-control" type="text" id="txt_login"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Direccion</label>
+                <input class="form-control" type="text" id="txt_direccion">
+            </div>
+        </div>
 
-	.editar {color:blue;}
-	.eliminar {color:red;}
-</style>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Identificador</label>
+                <input class="form-control" type="text" id="txt_identificador"  readonly="readonly">
+            </div>
+        </div>
 
-<div>
-	<div>
-		<h1>Perfil de Usuario</h1>
-
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Telefono</label>
+                <input class="form-control" type="text" id="txt_telefono">
+            </div>
+        </div>
 	</div>
-	
-	<div>
-		<button id="btn_clave" class="editar">Reset Pass</button>
-		<br/>
-		<br/>
-		<label>Nombre</label>
-		<input type="text" id="txt_nombre"/>
-		<br/>
-		<br/>
-		<label>Correo</label>
-		<input type="text" id="txt_login"/>
-		<br/>
-		<br/>
-		<label>Direccion</label>
-		<input type="text" id="txt_direccion">
-		<br/>
-		<br/>
-		<label>Identificador</label>
-		<input type="text" id="txt_identificador"  readonly="readonly">
-		<br/>
-		<br/>
-		<label>Telefono</label>
-		<input type="text" id="txt_telefono">
-		<br/>
-		<br/>
-		<button id="btn_guardar">Actualizar</button>
-		
-		
-		
-	</div>
 
-	<br/>
-	<br/>
-	
-
-	<div id="dv_clave" style=" padding: 20px; position:fixed; width:350px; height: 190px; top:0; left:0;   border:#333333 3px solid; background-color: #F8F8FF; color:#000000; display:none;" >
-	<div style="position:fixed">
-		<label>Nueva Clave:</label>
-		<input type="password" id="txt_EditarPass"/>
-		
-
-	</div>
-	<br/>
-	<br/>
-	<button id="btn_ActualizarClave">Guardar</button>
-
-</div>
-
-
-
-
-
+    <div class="row">
+        <div class="col-lg-12 text-right">
+            <div class="form-group">
+                <button id="btn_guardar" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label>Nueva Clave:</label>
+                <input class="form-control" type="password" id="txt_EditarPass"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-right">
+            <div class="form-group">
+                <button id="btn_ActualizarClave" class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -11,37 +11,13 @@
 	
 
 </style>
-
-<div>
-
-	<div>
-		<h1>Asignacion de Permisos</h1>
-	</div>
-	<div>
+<div class="col-lg-12">
+    <h1>Asignacion de Permisos</h1>
+	<div class="form-group">
 		<label>Rol:</label>
-		<select id="slt_roles">
-			
-			
-		</select>
+		<select class="form-control" id="slt_roles"></select>
 	</div>
-	<br/>
-	<br/>
-	<br/>
-
 	<div id="dv_pagina">
 		
 	</div>
-<br/>
-	<br/>
-	<br/><br/>
-	<br/>
-	<br/><br/>
-	<br/>
-	<br/><br/>
-	<br/>
-	<br/><br/>
-	<br/>
-	<br/><br/>
-	<br/>
-	<br/>
 </div>

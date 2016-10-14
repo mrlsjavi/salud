@@ -43,7 +43,7 @@ class Alerta_Model {
 	public function llenar_tabla(){
 		$alerta = alerta_orm::where('estado', 1);
 
-		$tabla = '<table id="javier" class="display" cellspacing="0" width="100%">
+		$tabla = '<div class="panel panel-default"><div class="panel-body"><table id="javier" class="table">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -86,7 +86,7 @@ class Alerta_Model {
 		}
 
 		$tabla = $tabla.'</tbody>
-   		</table>';
+   		</table></div></div>';
 		echo $tabla;
 	}
 

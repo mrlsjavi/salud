@@ -32,7 +32,7 @@ class Auth{
 		if($result){
 			foreach($result as $r){
 				
-				$menu=$menu.'<a href="'.URL.$r['nombre'].'" style="color:white; font-size: 1.5em; border-bottom: 3px solid white; ">'.$r['alias'].'</a>';
+				$menu=$menu.'<li><a href="'.URL.$r['nombre'].'"">'.$r['alias'].'</a><li>';
 				$menu=$menu.' ';
 				
 					//$r['id']

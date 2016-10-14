@@ -1,7 +1,7 @@
 <?php
 
 //always provide a trailing slash (/) after a path
-define('URL', 'http://localhost/salud/');
+define('URL', 'http://localhost:90/salud/');
 define('LIBS', 'libs/');
 
 	//define('DB_TYPE', 'mysql');
