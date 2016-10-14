@@ -46,7 +46,7 @@ class Usuario_Model {
 	public function llenar_tabla(){
 		$usuarios = usuario_orm::where('estado', 1);
 
-		$tabla = '<table id="javier" class="display" cellspacing="0" width="100%">
+		$tabla = '<div class="panel panel-default"><div class="panel-body"><table id="javier" class="table" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -80,13 +80,13 @@ class Usuario_Model {
 									<td>".$u->nombre."</td>
 									<td>".$u->login."
 									<td>".$u->obj_rol->nombre."
-									<td class = 'editar'   id='".$u->id."'>Editar</td>
-									<td class = 'clave'   id='".$u->id."'>Cambiar</td>
-									<td class = 'eliminar' id='".$u->id."'>Eliminar</td>";
+									<td class = 'editar'   id='".$u->id."'><span class='btn btn-success'>Editar</span></td>
+									<td class = 'clave'   id='".$u->id."'><span class='btn btn-warning'>Cambiar</span></td>
+									<td class = 'eliminar' id='".$u->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 		}
 
 		$tabla = $tabla.'</tbody>
-   		</table>';
+   		</table></div></div>';
 		echo $tabla;
 	}
 

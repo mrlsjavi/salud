@@ -47,8 +47,8 @@ class Sensor_Model {
 										<td>".$s->titulo."</td>
 										<td>".$s->descripcion."</td>
 										<td>".$s->tipo."</td>
-										<td class = 'editar'   id='".$s->id."'>Editar</td>
-										<td class = 'eliminar' id='".$s->id."'>Eliminar</td>";
+										<td class = 'editar'   id='".$s->id."'><span class='btn btn-success'>Editar</span></td>
+										<td class = 'eliminar' id='".$s->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 			}
 		}
 		$tabla = $tabla.'</tbody>

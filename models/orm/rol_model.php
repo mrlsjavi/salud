@@ -54,8 +54,8 @@ class Rol_Model {
 		foreach ($roles as $r) {
 			$tabla  = $tabla."<tr>
 									<td>".$r->nombre."</td>
-									<td class = 'editar'   id='".$r->id."'>Editar</td>
-									<td class = 'eliminar' id='".$r->id."'>Eliminar</td>";
+									<td class = 'editar'   id='".$r->id."'><span class='btn btn-success'>Editar<span></td>
+									<td class = 'eliminar' id='".$r->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 		}
 
 		$tabla = $tabla.'</tbody>

@@ -39,8 +39,8 @@ class Unidad_Medida_Model {
 			foreach ($medidas as $s) {
 				$tabla  = $tabla."<tr style=\"text-align: center;\">
 										<td>".$s->titulo."</td>
-										<td class = 'editar'   id='".$s->id."'>Editar</td>
-										<td class = 'eliminar' id='".$s->id."'>Eliminar</td>";
+										<td class = 'editar'   id='".$s->id."'><span class='btn btn-success'>Editar</span></td>
+										<td class = 'eliminar' id='".$s->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 			}
 		}
 		$tabla = $tabla.'</tbody>

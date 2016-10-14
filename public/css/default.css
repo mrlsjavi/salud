@@ -29,6 +29,53 @@ a{
 .btn-success:hover{
     background-color: #4CAF50 !important;
 }
+
+.checkbox-mod{
+    padding-top: 20px;
+}
+
+/*      MODALS      */
+
+.bg-modal{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(000,000,000,0.5);
+    z-index: 10000;
+    margin-top: 0px !important;
+    display: none;
+}
+
+.content-modal{
+    top: 15%;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0px 4px 15px 0px #000;
+    padding: 0px !important;
+}
+
+.header-modal{
+    border-bottom: 1px solid #dcdcdc;
+    padding: 20px;
+}
+
+.header-modal button{
+    background-color: transparent;
+    border: none;
+    color: #b5b5b5;
+}
+
+.body-modal{
+    padding: 20px;
+}
+
+.footer-modal{
+    padding: 20px;
+    border-top: 1px solid #dcdcdc;
+}
+
 /******************************/
 
 .container-fluid{

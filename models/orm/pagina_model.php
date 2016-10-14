@@ -60,8 +60,8 @@ class Pagina_Model {
 									<td>".$p->nombre."</td>
 									<td>".$p->alias."</td>
 									<td>".$p->orden."</td>
-									<td class = 'editar'   id='".$p->id."'>Editar</td>
-									<td class = 'eliminar' id='".$p->id."'>Eliminar</td>";
+									<td class = 'editar'   id='".$p->id."'><span class='btn btn-success'>Editar</span></td>
+									<td class = 'eliminar' id='".$p->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 		}
 
 		$tabla = $tabla.'</tbody>

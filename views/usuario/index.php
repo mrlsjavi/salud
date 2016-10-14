@@ -1,75 +1,71 @@
-<style type="text/css">
+<div class="col-lg-12">
+    <h1>Adiministracion de Usuarios</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input class="form-control" type="text" id="txt_nombre"/>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input class="form-control" type="password" id="txt_pass"/>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label>login</label>
+                <input class="form-control" type="text" id="txt_login"/>
+            </div>
+                <div class="form-group">
+                <label>Rol</label>
+                <select id="slt_rol" class="form-control">
+                    <option value="1">Admin</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group text-right">
+        <button id="btn_guardar" class="btn btn-primary">Guardar</button>
+    </div>
 
-	.editar {color:blue;}
-	.eliminar {color:red;}
-	.clave {color:blue;}
-</style>
-
-<div>
-	<div>
-		<h1>Adiministracion de Usuarios</h1>
-	</div>
-	<div>
-		<label>Nombre</label>
-		<input type="text" id="txt_nombre"/>
-		<br/>
-		<br/>
-		<label>login</label>
-		<input type="text" id="txt_login"/>
-		<br/>
-		<br/>
-		<label>Password</label>
-		<input type="password" id="txt_pass"/>
-		<br/>
-		<br/>
-		<label>Rol</label>
-		<select id="slt_rol">
-			<option value="1">Admin</option>
-		</select>
-		<br/>
-		<br/>
-		<button id="btn_guardar">Guardar</button>
-	</div>
-
-	<br/>
-	<br/>
-	<div id ="dv_tabla">
-		
-		
+    <div id ="dv_tabla">
 	</div>
 
-<div id="dv_edicion" style=" padding: 20px; position:fixed; width:350px; height: 190px; top:0; left:0;   border:#333333 3px solid; background-color: #F8F8FF; color:#000000; display:none;" >
+<div id="dv_edicion" class="bg-modal">
+	<div class="col-lg-offset-4 col-lg-4 content-modal">
+        <div class="header-modal text-right">
+            <button><i class="fa fa-close fa-fw"></i></button>
+        </div>
+        <div class="body-modal">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input class="form-control" type="text" id="txt_EditarNombre"/>
+            </div>
 
-	<div style="position:fixed"> 
-		<label>Nombre</label>
-		<input type="text" id="txt_EditarNombre"/>
-		<br/>
-		<br/>
-		<label>Login</label>
-		<input type="text" id="txt_EditarLogin"/>
-		<br/>
-		<br/>
-		<label>Rol</label>
-		<select id="slt_EditarRol">
-			
-		</select>
-		<input type="hidden" id="txt_EditarId"/>
+            <div class="form-group">
+                <label>Login</label>
+                <input class="form-control" type="text" id="txt_EditarLogin"/>
+            </div>
 
-		<br/>
-		<br/>
-		<button id="btn_actualizar">Guardar</button>
+            <div class="form-group">
+                <label>Rol</label>
+                <select id="slt_EditarRol" class="form-control"></select>
+                <input type="hidden" id="txt_EditarId"/>
+            </div>
+        </div>
+        <div class="footer-modal text-right">
+            <button id="btn_actualizar" class="btn btn-success">Guardar</button>
+        </div>
 	</div>
 </div>
 
 <div id="dv_clave">
-	<div style="position:fixed">
+	<div>
 		<label>Nueva Clave:</label>
-		<input type="password" id="txt_EditarPass"/>
-		<input type="hidden" id="txt_EditarIdClave">
+		<input class="form-control" type="password" id="txt_EditarPass"/>
+		<input class="form-control" type="hidden" id="txt_EditarIdClave">
 
 	</div>
-	<br/>
-	<br/>
 	<button id="btn_ActualizarClave">Guardar</button>
 
 </div>

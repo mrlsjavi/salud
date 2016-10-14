@@ -88,8 +88,8 @@ $input = "<input type='checkbox'/>";
 				$tabla =  $tabla."<td><input type='checkbox' disabled/></td>";
 			}
 								
-			$tabla = $tabla."<td class = 'editar'   id='".$r['id']."'>Editar</td>
-									<td class = 'eliminar' id='".$r['id']."'>Eliminar</td>";
+			$tabla = $tabla."<td class = 'editar'   id='".$r['id']."'><span class='btn btn-success'>Editar</span></td>
+									<td class = 'eliminar' id='".$r['id']."'><span class='btn btn-danger'>Eliminar</span></td>";
 		}
 
 		$tabla = $tabla.'</tbody>
