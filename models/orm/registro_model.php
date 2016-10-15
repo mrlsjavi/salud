@@ -12,7 +12,7 @@ class Registro_Model {
 		$info = json_decode($_POST['info']);
 		   $general = new general_orm;
 
-		 $r = $general::query("select Max(identificador) as identificador from usuario where estado  = 1");
+		 $r = $general::query("select Max(identificador) as identificador from usuario");
 		   $identificador = '';
 		   foreach ($r as $id) {
 		      $identificador = $id['identificador']+1;
@@ -34,6 +34,14 @@ class Registro_Model {
 		$registro = new usuario_orm($data);
 
 		$result = $registro->save();
+
+		$headers = "From: HWW@healthwithoutworries.com";
+        $correo_destino= trim($info->login);
+
+        $titulo = "Bienvenido a HWW";
+        $mensaje  = "Gracias por registrase en HWW";
+
+		$enviado = mail($correo_destino, $titulo, $mensaje, $headers);
 
 	 	echo json_encode($result);
 	}
