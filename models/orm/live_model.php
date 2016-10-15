@@ -466,7 +466,7 @@ $graficos = '<h2>Monitor en Tiempo Real</h2>
 		$tiene_datos = 0;
 
 
-		$tabla = "<table id='tb_historial' >
+		$tabla = "<table id='tb_historial' class='table table-striped'>
 					<thead>
 						<tr>
 							<th>Dia</th>
