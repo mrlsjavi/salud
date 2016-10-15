@@ -1,6 +1,6 @@
 /*
 Created: 03/09/2016
-Modified: 01/10/2016
+Modified: 15/10/2016
 Model: MySQL 5.5
 Database: MySQL 5.5
 */
@@ -63,6 +63,7 @@ CREATE TABLE sensor
   id Int NOT NULL AUTO_INCREMENT,
   titulo Varchar(30),
   descripcion Varchar(75),
+  tipo Varchar(2),
   estado Int,
   PRIMARY KEY (id)
 )
@@ -182,6 +183,18 @@ CREATE INDEX IX_Relationship16 ON usuario_alerta (usuario)
 CREATE INDEX IX_Relationship17 ON usuario_alerta (alerta)
 ;
 
+-- Table notificacion
+
+CREATE TABLE notificacion
+(
+  usuario Int,
+  token Varchar(1024)
+)
+;
+
+CREATE INDEX IX_Relationship18 ON notificacion (usuario)
+;
+
 -- Create relationships section ------------------------------------------------- 
 
 ALTER TABLE bitacora ADD CONSTRAINT Relationship1 FOREIGN KEY (usuario) REFERENCES usuario (id) ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -215,4 +228,7 @@ ALTER TABLE usuario_alerta ADD CONSTRAINT Relationship16 FOREIGN KEY (usuario) R
 ;
 
 ALTER TABLE usuario_alerta ADD CONSTRAINT Relationship17 FOREIGN KEY (alerta) REFERENCES alerta (id) ON DELETE RESTRICT ON UPDATE RESTRICT
+;
+
+ALTER TABLE notificacion ADD CONSTRAINT Relationship18 FOREIGN KEY (usuario) REFERENCES usuario (id) ON DELETE RESTRICT ON UPDATE RESTRICT
 ;
