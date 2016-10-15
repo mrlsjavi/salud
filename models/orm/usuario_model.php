@@ -80,8 +80,8 @@ class Usuario_Model {
 									<td>".$u->nombre."</td>
 									<td>".$u->login."
 									<td>".$u->obj_rol->nombre."
-									<td class = 'editar'   id='".$u->id."'><span class='btn btn-success'>Editar</span></td>
-									<td class = 'clave'   id='".$u->id."'><span class='btn btn-warning'>Cambiar</span></td>
+									<td class = 'editar'   id='".$u->id."' data-toggle='modal' data-target='#dv_edicion'><span class='btn btn-success'>Editar</span></td>
+									<td class = 'clave'   id='".$u->id."' data-toggle='modal' data-target='#dv_clave'><span class='btn btn-warning'>Cambiar</span></td>
 									<td class = 'eliminar' id='".$u->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 		}
 

@@ -54,9 +54,7 @@
 
 
                 <label>Alerta:</label>
-                <select id="slt_EditarAlerta" disabled>
-
-                </select>
+                <select  class="form-control" id="slt_EditarAlerta" disabled></select>
 
 
                 <label>Correo</label>
@@ -66,9 +64,9 @@
                 <label>Notificacion</label>
                 <input class="form-control" type="checkbox" id="EditarBox"/>
 
-                <div class="modal-footer">
-                    <button id="btn_actualizar">Actualizar</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_actualizar" class="btn btn-success" >Actualizar</button>
             </div>
         </div>
     </div>

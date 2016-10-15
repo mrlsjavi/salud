@@ -4,7 +4,7 @@
 		<label>Sensor:</label>
 		<select id="slt_roles" class="form-control"></select>
 	</div>
-	<div id="dv_pagina">
+	<div id="dv_pagina" class="col-lg-offset-3 col-lg-6 cont-dual-list">
 		
 	</div>
 </div>

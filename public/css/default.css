@@ -23,9 +23,12 @@ a{
     background-color: #FF5722 !important;
 }
 
+.cont-dual-list > div > input[type=button],
 .btn-success{
     background-color: #388E3C !important;
 }
+
+.cont-dual-list > div > input[type=button]:hover,
 .btn-success:hover{
     background-color: #4CAF50 !important;
 }
@@ -34,49 +37,9 @@ a{
     padding-top: 20px;
 }
 
-/*      MODALS      */
-
-.bg-modal{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    background-color: rgba(000,000,000,0.5);
-    z-index: 10000;
-    margin-top: 0px !important;
-    display: none;
+.contentGeneral-mod{
+    padding-bottom: 60px;
 }
-
-.content-modal{
-    top: 15%;
-    background-color: #fff;
-    border-radius: 6px;
-    box-shadow: 0px 4px 15px 0px #000;
-    padding: 0px !important;
-}
-
-.header-modal{
-    border-bottom: 1px solid #dcdcdc;
-    padding: 20px;
-}
-
-.header-modal button{
-    background-color: transparent;
-    border: none;
-    color: #b5b5b5;
-}
-
-.body-modal{
-    padding: 20px;
-}
-
-.footer-modal{
-    padding: 20px;
-    border-top: 1px solid #dcdcdc;
-}
-
-/******************************/
 
 .container-fluid{
     padding: 0px !important;
@@ -169,6 +132,34 @@ body {
     padding-bottom: 12px !important;
 }
 
+/*      DUAL LISTS      */
+
+.cont-dual-list > div{
+    width: calc(100% / 3);
+    float: left;
+}
+.cont-dual-list > div:nth-child(2){
+    margin-top: calc((180px - 76px) / 2);
+    text-align: center;
+}
+.cont-dual-list > div > select{
+    width: 100%;
+    height: 180px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 10px;
+}
+.cont-dual-list div:last-child{
+    margin-top: 20px;
+    padding: 0px;    
+}
+.cont-dual-list > div > input[type=button]{
+    border: none;
+    padding: 6px 10px;
+    color: white;
+    margin: 3px;
+    border-radius: 100px;
+}
 /*      FOOTER      */
 
 #footer{

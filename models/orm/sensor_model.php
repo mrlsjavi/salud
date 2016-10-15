@@ -18,7 +18,7 @@ class Sensor_Model {
 	}
 	public function llenar_tabla(){
 		$sensores = sensor_orm::where('estado', 1);
-		$tabla = '<table id="javier" class="display" cellspacing="0" width="100%">
+		$tabla = '<div class="panel panel-default"><div class="panel-body"><table id="javier" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Titulo</th>
@@ -47,12 +47,12 @@ class Sensor_Model {
 										<td>".$s->titulo."</td>
 										<td>".$s->descripcion."</td>
 										<td>".$s->tipo."</td>
-										<td class = 'editar'   id='".$s->id."'><span class='btn btn-success'>Editar</span></td>
+										<td class = 'editar'   id='".$s->id."' data-toggle='modal' data-target='#dv_edicion' ><span class='btn btn-success'>Editar</span></td>
 										<td class = 'eliminar' id='".$s->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 			}
 		}
 		$tabla = $tabla.'</tbody>
-   		</table>';
+   		</table></div></div>';
 		echo $tabla;
 	}
 	public function eliminar(){

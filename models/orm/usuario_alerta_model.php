@@ -43,7 +43,7 @@ class Usuario_Alerta_Model {
 									join alerta as a on ua.alerta = a.id
 									where ua.estado = 1 and ua.usuario =".Session::get('id'));
 
-		$tabla = '<table id="javier" class="display" cellspacing="0" width="100%">
+		$tabla = '<div class="panel panel-default"><div class="panel-body"><table id="javier" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -88,12 +88,12 @@ $input = "<input type='checkbox'/>";
 				$tabla =  $tabla."<td><input type='checkbox' disabled/></td>";
 			}
 								
-			$tabla = $tabla."<td class = 'editar'   id='".$r['id']."'><span class='btn btn-success'>Editar</span></td>
+			$tabla = $tabla."<td class = 'editar'   id='".$r['id']."' data-toggle='modal' data-target='#dv_edicion' ><span class='btn btn-success'>Editar</span></td>
 									<td class = 'eliminar' id='".$r['id']."'><span class='btn btn-danger'>Eliminar</span></td>";
 		}
 
 		$tabla = $tabla.'</tbody>
-   		</table>';
+   		</table></div></div>';
 		echo $tabla;
 	}
 

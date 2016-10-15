@@ -34,30 +34,38 @@
 		
 	</div>
 
-<div id="dv_edicion">
-	<div style="position:fixed"> 
-		<label>Nombre</label>
-		<input class="form-control" type="text" id="txt_EditarNombre"/>
-		<input type="hidden" id="txt_EditarId"/>
-		<br/>
-		<br/>
-		<label>Sensor</label>
-		<select id="slt_EditarSensor">
+    <div id="dv_edicion" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">                 
+                        <label>Nombre</label>
+                        <input class="form-control" type="text" id="txt_EditarNombre"/>
+                        <input type="hidden" id="txt_EditarId"/>
+                    </div>
 
-		</select>
-		<br/>
-		<br/>
-		<label>Min</label>
-		<input class="form-control" type="text" id="txt_EditarMin" />
-		<br/>
-		<br/>
-		<label>Max</label>
-		<input class="form-control" type="text" id="txt_EditarMax"/>
-		<br/>
-		<br/>
-		<button id="btn_actualizar">Actualizar</button>
-	</div>
-</div>
+                    <div class="form-group">                 
+                        <label>Sensor</label>
+                        <select class="form-control" id="slt_EditarSensor"></select>
+                    </div>
 
+                    <div class="form-group">                 
+                        <label>Min</label>
+                        <input class="form-control" type="text" id="txt_EditarMin" />
+                    </div>
 
+                    <div class="form-group">                 
+                        <label>Max</label>
+                        <input class="form-control" type="text" id="txt_EditarMax"/>
+                    </div>    
+                </div>
+                <div class="modal-footer">                
+                    <button id="btn_actualizar" class="btn btn-success" >Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

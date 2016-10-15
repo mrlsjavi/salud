@@ -30,7 +30,7 @@ class Pagina_Model {
 	public function llenar_tabla(){
 		$paginas = pagina_orm::where('estado', 1);
 
-		$tabla = '<table id="javier" class="display" cellspacing="0" width="100%">
+		$tabla = '<div class="panel panel-default"><div class="panel-body"><table id="javier" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -60,12 +60,12 @@ class Pagina_Model {
 									<td>".$p->nombre."</td>
 									<td>".$p->alias."</td>
 									<td>".$p->orden."</td>
-									<td class = 'editar'   id='".$p->id."'><span class='btn btn-success'>Editar</span></td>
+									<td class = 'editar'   id='".$p->id."' data-toggle='modal' data-target='#dv_edicion' ><span class='btn btn-success'>Editar</span></td>
 									<td class = 'eliminar' id='".$p->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 		}
 
 		$tabla = $tabla.'</tbody>
-   		</table>';
+   		</table></div></div>';
 		echo $tabla;
 	}
 

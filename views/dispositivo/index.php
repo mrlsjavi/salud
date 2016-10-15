@@ -30,19 +30,25 @@
 
 	</div>
 
-<div id="dv_edicion">
+<div id="dv_edicion" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <label>Usuario</label>
+                <select class="form-control"  id="txt_EditarUsuario"></select>
+                <input type="hidden" id="txt_EditarId"/>
 
-	<div style="position:fixed">
-		<label>Usuario</label>
-		<select  id="txt_EditarUsuario"></select>
-		<input type="hidden" id="txt_EditarId"/>
-		<br />
-		<label>IP</label>
-		<input type="text" id="txt_EditarIp" maxlength="20"/>
-		<br/>
-		<br/>
-		<button id="btn_actualizar">Actualizar</button>
-	</div>
+                <label>IP</label>
+                <input  class="form-control" type="text" id="txt_EditarIp" maxlength="20"/>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_actualizar" class="btn btn-success" >Actualizar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 

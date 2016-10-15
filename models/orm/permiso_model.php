@@ -125,7 +125,7 @@ class Permiso_Model {
 		foreach ($roles as $r) {
 			$tabla  = $tabla."<tr>
 									<td>".$r->nombre."</td>
-									<td class = 'editar'   id='".$r->id."'><span class='btn btn-success'>Editar</span></td>
+									<td class = 'editar'   id='".$r->id."' data-toggle='modal' data-target='#dv_edicion' ><span class='btn btn-success'>Editar</span></td>
 									<td class = 'eliminar' id='".$r->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 		}
 
@@ -195,7 +195,8 @@ class Permiso_Model {
 			}	
 			$tabla = $tabla.'</select>
 		</div>
-		<p class="clear"><input type="submit" class="submit" value="Guardar Cambios"></p>';
+        <div class="col-lg-12 text-left">
+		<p class="clear"><input type="submit" class="btn btn-primary submit" value="Guardar Cambios"></p></div>';
 		
 
 		echo $tabla;

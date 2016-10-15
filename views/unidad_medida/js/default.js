@@ -168,7 +168,7 @@ function editar (){
 function mostrarVentana(){
 	var ventana = document.getElementById('dv_edicion');
 	ventana.style.marginTop = "100px";
-	ventana.style.left = ((document.body.clientWidth-350) / 2) +"px";
+	// ventana.style.left = ((document.body.clientWidth-350) / 2) +"px";
 
 	ventana.style.display = 'block';
 }
@@ -176,7 +176,7 @@ function mostrarVentana(){
 function ocultarVentana(){
 	var ventana = document.getElementById('dv_edicion');
 	ventana.style.marginTop = "100px";
-	ventana.style.left = ((document.body.clientWidth-350) / 2) +"px";
+	// ventana.style.left = ((document.body.clientWidth-350) / 2) +"px";
 	ventana.style.display = 'none';
 }
 

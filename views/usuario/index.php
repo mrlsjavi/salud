@@ -30,45 +30,53 @@
 
     <div id ="dv_tabla">
 	</div>
-
-<div id="dv_edicion" class="bg-modal">
-	<div class="col-lg-offset-4 col-lg-4 content-modal">
-        <div class="header-modal text-right">
-            <button><i class="fa fa-close fa-fw"></i></button>
-        </div>
-        <div class="body-modal">
-            <div class="form-group">
-                <label>Nombre</label>
-                <input class="form-control" type="text" id="txt_EditarNombre"/>
+</div>
+<div id="dv_edicion" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input class="form-control" type="text" id="txt_EditarNombre"/>
+                </div>
 
-            <div class="form-group">
-                <label>Login</label>
-                <input class="form-control" type="text" id="txt_EditarLogin"/>
-            </div>
+                <div class="form-group">
+                    <label>Login</label>
+                    <input class="form-control" type="text" id="txt_EditarLogin"/>
+                </div>
 
-            <div class="form-group">
-                <label>Rol</label>
-                <select id="slt_EditarRol" class="form-control"></select>
-                <input type="hidden" id="txt_EditarId"/>
+                <div class="form-group">
+                    <label>Rol</label>
+                    <select id="slt_EditarRol" class="form-control"></select>
+                    <input type="hidden" id="txt_EditarId"/>
+                </div>
             </div>
-        </div>
-        <div class="footer-modal text-right">
-            <button id="btn_actualizar" class="btn btn-success">Guardar</button>
+            <div class="modal-footer">
+                <button id="btn_actualizar" class="btn btn-success">Guardar</button>
+            </div>
         </div>
 	</div>
 </div>
 
-<div id="dv_clave">
-	<div>
-		<label>Nueva Clave:</label>
-		<input class="form-control" type="password" id="txt_EditarPass"/>
-		<input class="form-control" type="hidden" id="txt_EditarIdClave">
-
-	</div>
-	<button id="btn_ActualizarClave">Guardar</button>
-
-</div>
-
-
+<div id="dv_clave" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">                
+                    <label>Nueva Clave:</label>
+                    <input class="form-control" type="password" id="txt_EditarPass"/>
+                    <input class="form-control" type="hidden" id="txt_EditarIdClave">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_ActualizarClave" class="btn btn-success">Guardar</button>
+            </div>    
+        </div>
+    </div>
 </div>

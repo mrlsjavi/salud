@@ -23,21 +23,25 @@
     </div>
 	<div id ="dv_tabla"></div>
 
-<div id="dv_edicion" style=" padding: 20px; position:fixed; width:350px; height: 190px; top:0; left:0;   border:#333333 3px solid; background-color: #F8F8FF; color:#000000; display:none;" >
-
-	<div style="position:fixed">
-		<label>Titulo</label>
-		<input class="form-control"  id="txt_EditarTitulo" maxlength="30"></input>
-		<input type="hidden" id="txt_EditarId"/>
-		<br />
-		<label>Descripcion</label>
-		<input class="form-control" type="text" id="txt_EditarDescripcion" maxlength="75"/>
-		<br/>
-		<label>Codigo</label>
-		<input class="form-control" type="text" id="txt_EditarCodigo" maxlength="2" />
-		<br />
-		<br/>
-		<button id="btn_actualizar">Actualizar</button>
+<div id="dv_edicion" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <label>Titulo</label>
+                <input class="form-control"  id="txt_EditarTitulo" maxlength="30"></input>
+                <input type="hidden" id="txt_EditarId"/>
+                <label>Descripcion</label>
+                <input class="form-control" type="text" id="txt_EditarDescripcion" maxlength="75"/>
+                <label>Codigo</label>
+                <input class="form-control" type="text" id="txt_EditarCodigo" maxlength="2" />
+            </div>
+            <div class="modal-footer">
+                <button id="btn_actualizar" class="btn btn-success" >Actualizar</button>
+            </div>
+        </div>
 	</div>
 </div>
 

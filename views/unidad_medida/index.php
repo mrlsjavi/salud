@@ -9,15 +9,21 @@
     </div>
     <div id ="dv_tabla"></div>
 
-<div id="dv_edicion" >
-
-	<div style="position:fixed">
-		<label>Titulo</label>
-		<input  id="txt_EditarTitulo" maxlength="35"></input>
-		<input type="hidden" id="txt_EditarId"/>
-		<br />
-		<br/>
-		<button id="btn_actualizar">Actualizar</button>
+<div id="dv_edicion" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <label>Titulo</label>
+                <input  class="form-control"  id="txt_EditarTitulo" maxlength="35"></input>
+                <input type="hidden" id="txt_EditarId"/>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_actualizar" class="btn btn-success" >Actualizar</button>
+            </div>
+        </div>
 	</div>
 </div>
 

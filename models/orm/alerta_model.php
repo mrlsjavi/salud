@@ -81,7 +81,7 @@ class Alerta_Model {
 									<td>".$a->obj_medida_sensor->obj_unidad_medida->titulo."</td>
 									<td>".$a->umbral_min."</td>
 									<td>".$a->umbral_max."</td>
-									<td class = 'editar'   id='".$a->id."'><span class='btn btn-success'>Editar</span></td>
+									<td class = 'editar'   id='".$a->id."' data-toggle='modal' data-target='#dv_edicion' ><span class='btn btn-success'>Editar</span></td>
 									<td class = 'eliminar' id='".$a->id."'><span class='btn btn-danger'>Eliminar</span></td>";
 		}
 
