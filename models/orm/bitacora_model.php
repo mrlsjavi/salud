@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ERROR | E_PARSE);
 class Bitacora_Model {
 
 	public function __construct(){
@@ -91,10 +90,92 @@ class Bitacora_Model {
 		$bitacoraFlujoAire->save();
 
 		$bitacoraSistole = new bitacora_orm($dataSistole);
-		$bitacoraSistole->save();
+		//$bitacoraSistole->save();
 
 		$bitacoraDiastole = new bitacora_orm($dataDiastole);
-		$bitacoraDiastole->save();
+		//$bitacoraDiastole->save();
+
+		$usuarioAlerta = usuario_alerta_orm::where('usuario', $dispositivo->usuario);
+		if($usuarioAlerta!=null && count($usuarioAlerta) > 0){
+			foreach ($usuarioAlerta as $alerta) {
+				$mensaje = "";
+				switch ($alerta->obj_alerta->medida_sensor) {
+					case $sensorPulso->id:
+						if($datosPulsiometro[0] < $alerta->obj_alerta->umbral_min){
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra debajo de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosPulsiometro[0];
+						}else if($datosPulsiometro[0] > $alerta->obj_alerta->umbral_max){
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra por encima de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosPulsiometro[0];
+						}
+						break;
+					case $sensorOxigeno->id:
+						if($datosPulsiometro[1] < $alerta->obj_alerta->umbral_min) {
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra debajo de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosPulsiometro[1];
+						}else if($datosPulsiometro[1] > $alerta->obj_alerta->umbral_max){
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra por encima de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosPulsiometro[1];
+						}
+						break;
+					case $sensorTemperatura->id:
+						if($datosArray[1] < $alerta->obj_alerta->umbral_min){
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra debajo de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosArray[1];
+						}else if($datosArray[1] > $alerta->obj_alerta->umbral_max){
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra por encima de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosArray[1];
+						}
+						break;
+
+					case $sensorFlujoAire->id:
+						if($datosArray[2] < $alerta->obj_alerta->umbral_min){
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra debajo de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosArray[2];
+						}else if($datosArray[2] > $alerta->obj_alerta->umbral_max){
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra por encima de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosArray[2];
+						}
+						break;
+					}
+
+					if($alerta->mail){
+						$headers = "From: HWW@healthwithoutworries.com";
+						$correo_destino= $alerta->mail;
+
+						$titulo = "Alerta Sensor: ".$alerta->obj_alerta->obj_medida_sensor->obj_sensor->titulo;
+						$enviado = mail($correo_destino, $titulo, $mensaje, $headers);
+					}
+					if($alerta->notificacion){
+						$url = 'https://fcm.googleapis.com/fcm/send';
+						$notificar = notificacion_orm::where('usuario', $dispositivo->usuario)[0];
+						$registrationIds = $notificar->token;
+						// prep the bundle
+						$msg = array
+						(
+							'text' 	=> $mensaje,
+							'title'		=> $titulo,
+							'vibrate'	=> 1,
+							'sound'		=> 1,
+						);
+						$fields = array
+						(
+							'registration_ids' 	=> $registrationIds,
+							'notification'			=> $msg
+						);
+
+						$headers = array
+						(
+							'Authorization: key=AIzaSyCZb_t_DKsOV6oua0LF46pE8PK8HeRXxZc',
+							'Content-Type: application/json'
+						);
+
+						$ch = curl_init();
+						curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+						curl_setopt( $ch,CURLOPT_POST, true );
+						curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+						curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+						curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+						curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+						$result = curl_exec($ch );
+						curl_close( $ch );
+						echo $result;
+					}
+			 }
+		}
+
 
 		echo "Guardado Exitosamente";
 
