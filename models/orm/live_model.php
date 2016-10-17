@@ -40,6 +40,12 @@ class Live_Model {
 		$pulso = 0;
 		$pulso_fecha = '';
 		$pulso_unidad = '';
+
+		$puntos_pulso = array();
+		$fechas_pulso = array();
+
+		$puntos_respiracion = array();
+		$fechas_respiracion = array();
 		//ir a traer los valores
 		$general = new general_orm;
 		//-----------oxigeno
@@ -83,43 +89,76 @@ class Live_Model {
 		//-----------fin de temperatura
 
 		//-----------pulso
-		$result = $general::query("select s.titulo, b.dato, um.titulo as unidad, b.fecha_hora
-							from bitacora as b
-							join usuario as u on b.usuario = u.id and u.id = ".Session::get('id')." 
-							join medida_sensor as ms on b.medida_sensor = ms.id 
-							join sensor as s on ms.sensor = s.id and s.titulo = 'pulso'
-							join unidad_medida as um on ms.unidad_medida = um.id 
-							order by b.id desc
-							limit 1");
+		$result = $general::query("select s.titulo, b.dato, um.titulo as unidad, b.fecha_hora, concat(hour(b.fecha_hora),':', minute(b.fecha_hora),':', second(b.fecha_hora)) as hora
+									from bitacora as b
+									join usuario as u on b.usuario = u.id and u.id = ".Session::get('id')." 
+									join medida_sensor as ms on b.medida_sensor = ms.id 
+									join sensor as s on ms.sensor = s.id and s.titulo = 'pulso'
+									join unidad_medida as um on ms.unidad_medida = um.id 
+									order by b.id desc
+									limit 5");
+
+		$indice_puntos_pulso = 4;
+		for($i = 0; $i<4; $i++){
+			$puntos_pulso[$i] = 0;
+			$fechas_pulso[$i]= '';
+		}
 
 		if($result){
 				foreach($result as $r){
-					$pulso = $r['dato'];
-					$pulso_fecha = $r['fecha_hora'];
-					$pulso_unidad  =$r['unidad'];
+					if($indice_puntos_pulso == 4 ){
+						$pulso = $r['dato'];
+						$pulso_fecha = $r['fecha_hora'];
+						$pulso_unidad  =$r['unidad'];
+					}
 					
+					
+					$puntos_pulso[$indice_puntos_pulso] = $r['dato'];
+					$fechas_pulso[$indice_puntos_pulso] =  $r['hora'];
+					$indice_puntos_pulso--;
 				}
 			}
+
+				$puntos1 = "data : [".$puntos_pulso[0].",".$puntos_pulso[1].",".$puntos_pulso[2].",".$puntos_pulso[3].",".$puntos_pulso[4]."]";
+				$fechas1 = "labels: ['".$fechas_pulso[0]."', '".$fechas_pulso[1]."', '".$fechas_pulso[2]."', '".$fechas_pulso[3]."', '".$fechas_pulso[4]."']";
+				//labels : ["uno","dos","tres","cuatro","cinco"]
+				//$puntos1 = "data:[0,0,0,0]";
 		//-----------fin de pulso
 
 		//-----------respiracion
-		$result = $general::query("select s.titulo, b.dato, um.titulo as unidad, b.fecha_hora
-							from bitacora as b
-							join usuario as u on b.usuario = u.id and u.id = ".Session::get('id')." 
-							join medida_sensor as ms on b.medida_sensor = ms.id 
-							join sensor as s on ms.sensor = s.id and s.titulo = 'respiracion'
-							join unidad_medida as um on ms.unidad_medida = um.id 
-							order by b.id desc
-							limit 1");
+		$result = $general::query("select s.titulo, b.dato, um.titulo as unidad, b.fecha_hora, concat(hour(b.fecha_hora),':', minute(b.fecha_hora),':', second(b.fecha_hora)) as hora
+									from bitacora as b
+									join usuario as u on b.usuario = u.id and u.id = ".Session::get('id')." 
+									join medida_sensor as ms on b.medida_sensor = ms.id 
+									join sensor as s on ms.sensor = s.id and s.titulo = 'respiracion'
+									join unidad_medida as um on ms.unidad_medida = um.id 
+									order by b.id desc
+									limit 5");
 
-		if($result){
+		$indice_puntos_respiracion = 4;
+		for($i = 0; $i<4; $i++){
+			$puntos_respiracion[$i] = 0;
+			$fechas_respiracion[$i]= '';
+		}
+
+			if($result){
 				foreach($result as $r){
-					$respiracion = $r['dato'];
-					$respiracion_fecha = $r['fecha_hora'];
-					$respiracion_unidad  =$r['unidad'];
+					if($indice_puntos_respiracion == 4 ){
+						$respiracion = $r['dato'];
+						$respiracion_fecha = $r['fecha_hora'];
+						$respiracion_unidad  =$r['unidad'];
+					}
 					
+					
+					$puntos_respiracion[$indice_puntos_respiracion] = $r['dato'];
+					$fechas_respiracion[$indice_puntos_respiracion] =  $r['hora'];
+					$indice_puntos_respiracion--;
 				}
 			}
+
+			$puntos2 = "data : [".$puntos_respiracion[0].",".$puntos_respiracion[1].",".$puntos_respiracion[2].",".$puntos_respiracion[3].",".$puntos_respiracion[4]."]";
+			$fechas2 = "labels: ['".$fechas_respiracion[0]."', '".$fechas_respiracion[1]."', '".$fechas_respiracion[2]."', '".$fechas_respiracion[3]."', '".$fechas_respiracion[4]."']";
+				
 		//-----------fin de respiracion
 
 		//mostrar resultados 
@@ -141,8 +180,18 @@ $graficos = '<h2>Monitor en Tiempo Real</h2>
 
 		<br/>
 		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 		<div id="dv_temperatura">
 			<div class="progress-bar">
+				
+			</div>
+			<br/>
+			<br/>
+			<div class="row">
 				<strong>'.($temperatura*100).'</strong><i>º '.$temperatura_unidad.'</i>
 				<br/>
 				<span class="titulos">Temperatura </span>
@@ -156,7 +205,35 @@ $graficos = '<h2>Monitor en Tiempo Real</h2>
 
 	<div id="dv_derecha" style="float:right">
 			<div id="dv_pulso">		
-				<img src= "'.URL.'public/images/pulso.gif" width="350" height="75"/>
+				<div id="canvas-holder">
+			 		<canvas id="chart-area6" width="600" height="200"></canvas>
+			 		
+				</div>
+
+				<script type="text/javascript">
+			 			var lineChartData = {
+						'.$fechas1.',
+						datasets : [
+							{
+								label: "Primera serie de datos",
+								fillColor : "rgba(220,220,220,0.2)",
+								strokeColor : "#6b9dfa",
+								pointColor : "#1e45d7",
+								pointStrokeColor : "#fff",
+								pointHighlightFill : "#fff",
+								pointHighlightStroke : "rgba(220,220,220,1)",
+								'.$puntos1.'
+							}
+							
+						]
+
+					}
+
+					var ctx6 = document.getElementById("chart-area6").getContext("2d");
+					//window.myPie = new Chart(ctx6).Line(lineChartData, {responsive:true});
+					window.myPie = new Chart(ctx6).Line(lineChartData, {responsive:false});
+
+			 		</script>
 				<strong>'.$pulso.'</strong><i> '.$pulso_unidad.'</i>
 				<br/>
 				<span class="titulos">Pulso</span>
@@ -165,6 +242,37 @@ $graficos = '<h2>Monitor en Tiempo Real</h2>
 			<br/>
 			<br/>
 			<div id="dv_respiraciones">
+
+					<div id="canvas-holder">
+			 			<canvas id="chart-area5" width="600" height="200"></canvas>
+				 		
+					</div>
+
+					<script type="text/javascript">
+				 			var lineChartData = {
+							'.$fechas2.',
+							datasets : [
+								{
+									label: "Segunda serie de datos",
+									fillColor : "rgba(220,220,220,0.2)",
+									strokeColor : "#6b9dfa",
+									pointColor : "#1e45d7",
+									pointStrokeColor : "#fff",
+									pointHighlightFill : "#fff",
+									pointHighlightStroke : "rgba(220,220,220,1)",
+									'.$puntos2.'
+								}
+								
+							]
+
+						}
+
+						var ctx5 = document.getElementById("chart-area5").getContext("2d");
+						//window.myPie = new Chart(ctx4).Line(lineChartData, {responsive:true});
+						window.myPie = new Chart(ctx5).Line(lineChartData, {responsive:false});
+
+				 		</script>
+
 				<strong>'.$respiracion.'</strong><i> '.$respiracion_unidad.'</i>
 				<br/>
 				<span class="titulos">Respiraciones</span>
@@ -278,7 +386,7 @@ $graficos = '<h2>Monitor en Tiempo Real</h2>
 												from bitacora as b 
 												join medida_sensor as ms on b.medida_sensor = ms.id and ms.sensor = ".$info->sensor."
 												join sensor as s on ms.sensor = s.id
-												join unidad_medida as um on ms.unidad_medida = um.id and um.titulo = 'sistolica'
+												join unidad_medida as um on ms.unidad_medida = um.id and um.titulo = 'SISmmHg'
 												where b.usuario =  ".Session::get('id')." and YEAR(b.fecha_hora) = '".$info->anio."' and MONTH(b.fecha_hora) ='".$i."' 
 												Group by um.titulo");
 
@@ -295,7 +403,7 @@ $graficos = '<h2>Monitor en Tiempo Real</h2>
 												from bitacora as b 
 												join medida_sensor as ms on b.medida_sensor = ms.id and ms.sensor = ".$info->sensor."
 												join sensor as s on ms.sensor = s.id
-												join unidad_medida as um on ms.unidad_medida = um.id and um.titulo = 'distolica'
+												join unidad_medida as um on ms.unidad_medida = um.id and um.titulo = 'DIAmmHg'
 												where b.usuario =  ".Session::get('id')." and YEAR(b.fecha_hora) = '".$info->anio."' and MONTH(b.fecha_hora) ='".$i."' 
 												Group by um.titulo");
 
