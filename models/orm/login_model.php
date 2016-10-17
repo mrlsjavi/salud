@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ERROR | E_PARSE);
 
 	class Login_Model {
 
@@ -55,9 +55,22 @@
 
     public function entrar(){
       $user = usuario_orm::where_login(trim($_POST['login']), trim(md5($_POST['password'])));
-
+			$registro = notificacion_orm::where('usuario'. $user->id);
       if($user){
         //echo "entro";
+				if($registro!=null && count($registro)>0){
+					$token = $registro[0];
+					$token->token = $_POST['registro'];
+					$notificacion = new notificacion_orm($token);
+					$notificacion->save();
+				}else{
+					$data = array(
+						'usuario' => $user->id,
+						'token' => $_POST['registro']
+					);
+					$notificacion = new notificacion_orm($data);
+					$notificacion->save();
+				}
         header('Content-Type: application/json');
         $result = array('cod'=> 1, 'data' =>$user);
         echo json_encode($result);

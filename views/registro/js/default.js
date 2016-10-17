@@ -45,7 +45,9 @@ $(document).ready(function(){
 					$("#txt_direccion").val(null);
 					$("#txt_telefono").val(null);
 					//header('location: '.URL.'login');
-					window.location="http://localhost/salud/login";
+					window.location="http://52.36.27.188/salud/login";
+
+					
 				}
 				else{
 					alert("No ha sido posible registrarlo, intente de nuevo");

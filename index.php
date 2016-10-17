@@ -32,6 +32,7 @@ require_once("models/orm/sensor_orm.php");
 require_once("models/orm/alerta_orm.php");
 require_once("models/orm/bitacora_orm.php");
 require_once("models/orm/usuario_alerta_orm.php");
+require_once("models/orm/notificacion_orm.php");
 //require_once("models/orm/accion_model.php"); //llego al model pero no al orm -_-
 //require_once("")
 
@@ -65,6 +66,3 @@ $bootstrap = new Bootstrap();
 setErrorFile($path)
 setDefaultFile($path)*/
 $bootstrap->init();
-
-
-
