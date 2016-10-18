@@ -1,7 +1,7 @@
 <?php
 	class notificacion_orm extends ORM {
 		public $usuario, $obj_usuario, $token;
-		protected static $table = 'bitacora';
+		protected static $table = 'notificacion';
 
 		public function __construct($data){
 			parent::__construct(); //llamo el orm

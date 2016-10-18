@@ -1,8 +1,6 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
-
 	class Login_Model {
-
 
 		public function __construct(){
 
@@ -55,17 +53,19 @@ error_reporting(E_ERROR | E_PARSE);
 
     public function entrar(){
       $user = usuario_orm::where_login(trim($_POST['login']), trim(md5($_POST['password'])));
-			$registro = notificacion_orm::where('usuario'. $user->id);
+			$registro = notificacion_orm::where('usuario', $user[0]->id);
       if($user){
         //echo "entro";
 				if($registro!=null && count($registro)>0){
-					$token = $registro[0];
-					$token->token = $_POST['registro'];
-					$notificacion = new notificacion_orm($token);
-					$notificacion->save();
+					$data = array(
+						'usuario' => $user[0]->id,
+						'token' => $_POST['registro']
+					);
+					$general = new general_orm();
+					$general::query("UPDATE notificacion set token='".$data['token']."' WHERE usuario=".$data['usuario']);
 				}else{
 					$data = array(
-						'usuario' => $user->id,
+						'usuario' => $user[0]->id,
 						'token' => $_POST['registro']
 					);
 					$notificacion = new notificacion_orm($data);

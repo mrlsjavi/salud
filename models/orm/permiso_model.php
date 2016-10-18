@@ -5,7 +5,7 @@ class Permiso_Model {
 	public function __construct(){
 
 			//parent::__construct();
-			
+
 	}
 
 	public function guardar(){
@@ -25,11 +25,11 @@ class Permiso_Model {
 			else{
 				$nuevos = $nuevos.$id[$i].',';
 			}
-			
+
 		}
 
 		//caso 1 agregar logico
-		$result = $general::query("select id 
+		$result = $general::query("select id
 									from permiso_rol
 									where pagina in (".$nuevos.")
 									and estado = 0
@@ -42,7 +42,7 @@ class Permiso_Model {
 		}
 		$result = '';
 		//caso2 eliminado logico
-		$result = $general::query("select id 
+		$result = $general::query("select id
 									from permiso_rol
 									where pagina not in (".$nuevos.")
 									and estado = 1
@@ -55,10 +55,10 @@ class Permiso_Model {
 		}
 		$result = '';
 		//caso 3 agregar los nuevos
-		$result = $general::query("select p.id 
+		$result = $general::query("select p.id
 									from pagina as p
-									where p.id not in (select pagina 
-															from permiso_rol 
+									where p.id not in (select pagina
+															from permiso_rol
 															where pagina in (".$nuevos.")
 															and rol = ".$rol."
 															and estado = 1)
@@ -80,7 +80,7 @@ class Permiso_Model {
 
 //		echo $nuevos;
 		//echo $id[0];
-		
+
 
 		/*$data = array(
 			'id'=>'',
@@ -105,7 +105,7 @@ class Permiso_Model {
                 <th>Nombre</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                
+
             </tr>
         </thead>
         <tfoot>
@@ -113,12 +113,12 @@ class Permiso_Model {
                 <th>Nombre</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                
+
             </tr>
         </tfoot>
         <tbody id="">
-         	
-         	
+
+
         ';
 
         //validar si hay respuest
@@ -148,7 +148,7 @@ class Permiso_Model {
 	}
 
 	public function traer_paginas(){
-		
+
 		$info = json_decode($_POST['info']);
 		$rol = $info->id;
 		//tengo que validar si ese rol tiene o no tiene ya roles asignados
@@ -156,19 +156,19 @@ class Permiso_Model {
 		$general = new general_orm;
 		$result = $general::query("select p.id, p.nombre
 									from pagina as p
-									where p.id not in (select pagina 
-															from permiso_rol 
+									where p.id not in (select pagina
+															from permiso_rol
 															where rol = ".$rol."
 															and estado = 1)
 									and p.estado = 1");
 
-		
+
 			$tabla = '<div class="div">
 						<select name="origen[]" id="origen" multiple="multiple" size="8" class="select">';
 			if($result){
 				foreach($result as $r){
 					$tabla = $tabla.'<option value="'.$r['id'].'">'.$r['nombre'].'</option>';
-								
+
 				}
 			}
 			$tabla = $tabla.'</select>
@@ -186,22 +186,22 @@ class Permiso_Model {
 										and p.estado = 1");
 
 			if($result){
-			
+
 			foreach($result as $r){
 				$tabla = $tabla.'<option value="'.$r['id'].'">'.$r['nombre'].'</option>';
-							
+
 			}
 
-			}	
+			}
 			$tabla = $tabla.'</select>
 		</div>
         <div class="col-lg-12 text-left">
 		<p class="clear"><input type="submit" class="btn btn-primary submit" value="Guardar Cambios"></p></div>';
-		
+
 
 		echo $tabla;
-	
-	
+
+
 
 	}
 }

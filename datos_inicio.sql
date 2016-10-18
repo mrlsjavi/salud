@@ -1,5 +1,6 @@
 INSERT INTO rol (id, nombre, estado) VALUES
 ("", 'admin', 1);
+INSERT INTO rol (id, nombre, estado) VALUES
 ("", 'usuario', 1);
 
 INSERT INTO usuario (id, rol, nombre, login, password, direccion, telefono, identificador, estado) VALUES

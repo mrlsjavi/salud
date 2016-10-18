@@ -13,17 +13,36 @@ class Bitacora_Model {
 		$data = $info->data;
 		$datosArray = explode("|", $data);
 
+		$oxigeno = sensor_orm::where('tipo', 'PO')[0];
 		//Sensor Oxigeno
-		$sensorPulso = medida_sensor_orm::find(1);
-		$sensorOxigeno = medida_sensor_orm::find(2);
+		$medidaSensores = medida_sensor_orm::where('sensor', $oxigeno->id);
+		if($medidaSensores[0]->obj_unidad_medida->titulo == '%SPo2'){
+				$sensorOxigeno = $medidaSensores[0];
+				$sensorPulso = $medidaSensores[1];
+		}else{
+			$sensorOxigeno = $medidaSensores[1];
+			$sensorPulso = $medidaSensores[0];
+		}
 
-		//Sensor Oxigeno
-		$sensorTemperatura = medida_sensor_orm::find(3);
+		$temperatura = sensor_orm::where('tipo', 'TP')[0];
+		//Sensor Temperatura
+		$sensorTemperatura = medida_sensor_orm::where('sensor', $temperatura->id)[0];
+
+		$aire = sensor_orm::where('tipo', 'BS')[0];
 		//Sensor Aire
-		$sensorFlujoAire = medida_sensor_orm::find(6);
+		$sensorFlujoAire = medida_sensor_orm::where('sensor', $aire->id)[0];
+
+
+		$presion = sensor_orm::where('tipo', 'BP')[0];
+		$medidaSensoresP = medida_sensor_orm::where('sensor', $presion->id);
 		//Sensor esfigmomanómetro
-		$sensorDiastole = medida_sensor_orm::find(5);
-		$sensorSistole = medida_sensor_orm::find(4);
+		if($medidaSensoresP[0]->obj_unidad_medida->titulo == 'SISmmHg'){
+				$sensorSistole = $medidaSensoresP[0];
+				$sensorDiastole = $medidaSensoresP[1];
+		}else{
+			$sensorSistole = $medidaSensoresP[1];
+			$sensorDiastole = $medidaSensoresP[0];
+		}
 
 		$datosPulsiometro = explode(",",$datosArray[0]);
 		$fechaHora = new DateTime();
@@ -102,31 +121,31 @@ class Bitacora_Model {
 				switch ($alerta->obj_alerta->medida_sensor) {
 					case $sensorPulso->id:
 						if($datosPulsiometro[0] < $alerta->obj_alerta->umbral_min){
-							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra debajo de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosPulsiometro[0];
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. " se encuentra debajo de: ".$alerta->obj_alerta->umbral_min.", su valor actual es de: ".$datosPulsiometro[0];
 						}else if($datosPulsiometro[0] > $alerta->obj_alerta->umbral_max){
-							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra por encima de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosPulsiometro[0];
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. " se encuentra por encima de: ".$alerta->obj_alerta->umbral_min.", su valor actual es de: ".$datosPulsiometro[0];
 						}
 						break;
 					case $sensorOxigeno->id:
 						if($datosPulsiometro[1] < $alerta->obj_alerta->umbral_min) {
-							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra debajo de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosPulsiometro[1];
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. " se encuentra debajo de: ".$alerta->obj_alerta->umbral_min.", su valor actual es de: ".$datosPulsiometro[1];
 						}else if($datosPulsiometro[1] > $alerta->obj_alerta->umbral_max){
-							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra por encima de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosPulsiometro[1];
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. " se encuentra por encima de: ".$alerta->obj_alerta->umbral_min.", su valor actual es de: ".$datosPulsiometro[1];
 						}
 						break;
 					case $sensorTemperatura->id:
 						if($datosArray[1] < $alerta->obj_alerta->umbral_min){
-							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra debajo de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosArray[1];
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. " se encuentra debajo de: ".$alerta->obj_alerta->umbral_min.", su valor actual es de: ".$datosArray[1];
 						}else if($datosArray[1] > $alerta->obj_alerta->umbral_max){
-							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra por encima de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosArray[1];
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. " se encuentra por encima de: ".$alerta->obj_alerta->umbral_min.", su valor actual es de: ".$datosArray[1];
 						}
 						break;
 
 					case $sensorFlujoAire->id:
 						if($datosArray[2] < $alerta->obj_alerta->umbral_min){
-							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra debajo de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosArray[2];
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. " se encuentra debajo de: ".$alerta->obj_alerta->umbral_min.", su valor actual es de: ".$datosArray[2];
 						}else if($datosArray[2] > $alerta->obj_alerta->umbral_max){
-							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. "se encuentra por encima de ".$alerta->obj_alerta->umbral_min." valor actual es ".$datosArray[2];
+							$mensaje = "El ".$alerta->obj_alerta->obj_medida_sensor->obj_unidad_medida->titulo. " se encuentra por encima de: ".$alerta->obj_alerta->umbral_min.",  su valor actual es de: ".$datosArray[2];
 						}
 						break;
 					}
@@ -141,7 +160,7 @@ class Bitacora_Model {
 					if($alerta->notificacion){
 						$url = 'https://fcm.googleapis.com/fcm/send';
 						$notificar = notificacion_orm::where('usuario', $dispositivo->usuario)[0];
-						$registrationIds = $notificar->token;
+						$registrationIds = array($notificar->token);
 						// prep the bundle
 						$msg = array
 						(
