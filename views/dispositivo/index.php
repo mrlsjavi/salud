@@ -45,7 +45,7 @@
                 <input  class="form-control" type="text" id="txt_EditarIp" maxlength="20"/>
             </div>
             <div class="modal-footer">
-                <button id="btn_actualizar" class="btn btn-success" >Actualizar</button>
+                <button id="btn_actualizar" class="btn btn-success" data-dismiss="modal">Actualizar</button>
             </div>
         </div>
     </div>

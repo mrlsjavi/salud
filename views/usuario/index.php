@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btn_actualizar" class="btn btn-success">Guardar</button>
+                <button id="btn_actualizar" class="btn btn-success" data-dismiss="modal">Guardar</button>
             </div>
         </div>
 	</div>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btn_ActualizarClave" class="btn btn-success">Guardar</button>
+                <button id="btn_ActualizarClave" class="btn btn-success" data-dismiss="modal">Guardar</button>
             </div>    
         </div>
     </div>
