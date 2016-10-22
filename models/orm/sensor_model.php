@@ -40,7 +40,7 @@ class Sensor_Model {
         <tbody id="">
         ';
         //validar si hay respuest
-				print_r($sensores);
+				//print_r($sensores);
 		if($sensores!=null && count($sensores) > 0){
 			foreach ($sensores as $s) {
 				$tabla  = $tabla."<tr style=\"text-align: center;\">
