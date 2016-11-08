@@ -219,6 +219,9 @@ class Bitacora_Model {
 			return json_encode($listado);
 		}
 		foreach ($bitacoras as $bitacora) {
+			if($bitacora->obj_usuario == null){
+				continue;
+			}
 			$listado [] = array(
 				'id' => $bitacora->id,
 				'usuario' => array(
@@ -259,7 +262,7 @@ class Bitacora_Model {
 	public function monitor_vivo(){
 		header('Content-Type: application/json');
 		$general = new general_orm();
-		$bitacoras = $general::query("select * from bitacora where CAST(fecha_hora AS DATE) = CURDATE() order by fecha_hora desc limit 6");
+		$bitacoras = $general::query("select * from bitacora where CAST(fecha_hora AS DATE) = CURDATE() AND usuario is not null order by fecha_hora desc limit 6");
 		$listado = array();
 		if($bitacoras ==null || count($bitacoras) == 0){
 			header("HTTP/1.0 404 Not Found");
@@ -308,7 +311,7 @@ class Bitacora_Model {
 	public function historico_resumen(){
 		header('Content-Type: application/json');
 		$general = new general_orm();
-		$consulta = 'select id, usuario, medida_sensor, avg(dato) as dato, CONCAT(YEAR(fecha_hora),"-" ,MONTH(fecha_hora), "-", 30) as fecha_hora from bitacora group by medida_sensor, YEAR(fecha_hora), MONTH(fecha_hora)';
+		$consulta = 'select id, usuario, medida_sensor, avg(dato) as dato, CONCAT(YEAR(fecha_hora),"-" ,MONTH(fecha_hora), "-", 30) as fecha_hora from bitacora where usuario is not null group by medida_sensor, YEAR(fecha_hora), MONTH(fecha_hora)';
 		$bitacoras = $general::query($consulta);
 		$listado = array();
 		if($bitacoras ==null || count($bitacoras) == 0){
